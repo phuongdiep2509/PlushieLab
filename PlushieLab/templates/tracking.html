@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Order Tracking — PlushieLab{% endblock %}
+
+{% block content %}
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span>Tracking</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TRACKING HERO — Search form
+  ══════════════════════════════════════ -->
+  <section class="tracking-hero">
+    <h1>Track Your Order</h1>
+    <p>Enter your order number to see the latest status of your plushie 🐾</p>
+    <form class="tracking-form" id="tracking-form" autocomplete="off">
+      <input
+        type="text"
+        id="tracking-input"
+        class="tracking-input"
+        placeholder="e.g. PLB-20241024-001"
+        aria-label="Order number"
+      />
+      <button type="submit" class="btn-primary">Track →</button>
+    </form>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ORDER TIMELINE (mock, shown after search)
+  ══════════════════════════════════════ -->
+  <div class="section" style="max-width:680px">
+
+    <h2 class="section-heading">Order Status</h2>
+
+    <!-- MOCK timeline — shown after form submit -->
+    <div id="tracking-timeline" style="display:none">
+
+      <div style="background:var(--color-white);border-radius:var(--border-radius);padding:28px 32px;box-shadow:var(--shadow-soft);margin-bottom:28px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+          <div>
+            <p style="font-size:0.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--color-brown);opacity:0.65;margin-bottom:4px">Order Number</p>
+            <p id="display-order-num" style="font-family:var(--font-heading);font-style:italic;color:var(--color-brown);font-size:1.3rem;font-weight:600">—</p>
+          </div>
+          <span style="background:var(--color-caramel);color:white;border-radius:20px;padding:6px 18px;font-size:0.82rem;font-weight:600">
+            🚚 In Transit
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;font-size:0.85rem">
+          <div>
+            <p style="opacity:0.55;font-size:0.75rem;margin-bottom:4px">ORDER DATE</p>
+            <p style="font-weight:500">Oct 20, 2024</p>
+          </div>
+          <div>
+            <p style="opacity:0.55;font-size:0.75rem;margin-bottom:4px">ESTIMATED DELIVERY</p>
+            <p style="font-weight:500">Oct 27, 2024</p>
+          </div>
+          <div>
+            <p style="opacity:0.55;font-size:0.75rem;margin-bottom:4px">ITEMS</p>
+            <p style="font-weight:500">1 plushie</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline steps -->
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot done">✓</div>
+          <div class="timeline-content">
+            <h4>Order Placed</h4>
+            <p>Oct 20, 2024 · 10:32 AM — Your order has been confirmed and payment received.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot done">✓</div>
+          <div class="timeline-content">
+            <h4>Crafting</h4>
+            <p>Oct 21, 2024 · 2:00 PM — Our team started sewing your plushie with love 🧵</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot done">✓</div>
+          <div class="timeline-content">
+            <h4>Quality Check</h4>
+            <p>Oct 22, 2024 · 11:00 AM — Your plushie passed our cuddle quality inspection 🎉</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot current">→</div>
+          <div class="timeline-content">
+            <h4>Shipped</h4>
+            <p>Oct 23, 2024 · 9:00 AM — Your package is on its way! Tracking: VN123456789</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="opacity:0.4">○</div>
+          <div class="timeline-content" style="opacity:0.45">
+            <h4>Delivered</h4>
+            <p>Expected Oct 27, 2024 — Your plushie is almost home! 🏠</p>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
+
+    </div><!-- /tracking-timeline -->
+
+    <!-- Hint text (before search) -->
+    <div id="tracking-hint" style="text-align:center;padding:48px 0;opacity:0.5">
+      <p style="font-size:3rem;margin-bottom:12px">📦</p>
+      <p>Enter your order number above to track your plushie</p>
+    </div>
+
+  </div><!-- /section -->
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Show the order number in the timeline after form submit
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('tracking-form');
+    const hint = document.getElementById('tracking-hint');
+    form.addEventListener('submit', function(e) {
+      const val = document.getElementById('tracking-input').value.trim();
+      const display = document.getElementById('display-order-num');
+      if (display) display.textContent = val || '—';
+      if (hint) hint.style.display = 'none';
+    });
+  });
+</script>
+{% endblock %}

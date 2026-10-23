@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}PlushieLab — Little Things, Lasting Memories{% endblock %}
+
+{% block content %}
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO SECTION (Wireframe Page 1)
+       Background: background.png
+  ══════════════════════════════════════ -->
+  <section class="hero-section" aria-label="Hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">✨ Little Things, Lasting Memories</span>
+      <h1 class="hero-title">Plushie Lab</h1>
+      <p class="hero-subtitle">Online store specializing in customizable plush toys & personalized gifts</p>
+      <div class="hero-cta-group">
+        <a href="/design" class="btn-primary" style="padding:14px 36px;font-size:1.05rem;">Design Your Plushie ✂️</a>
+        <a href="/new-collection" class="btn-ghost">View All Collections →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — NEW COLLECTION (Wireframe Page 1)
+       Layout: Left = Featured Collection Card w/ slider dots
+               Right = 2x2 Product Card Grid (Halloween)
+  ══════════════════════════════════════ -->
+  <section class="section" id="new-collection-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">New Collection</h2>
+      <a href="/new-collection" class="view-all-link">View all →</a>
+    </div>
+
+    <div class="collection-split-layout">
+      <!-- Left Featured Banner Card with Carousel Indicators -->
+      <div class="collection-main-banner">
+        <div class="main-banner-img-wrap">
+          <!-- PLACEHOLDER: Main collection banner image -->
+          <img src="/static/image/background.png" alt="Special Seasonal Collection" class="main-banner-img" />
+          <div class="main-banner-overlay">
+            <span class="badge-tag">Halloween Special Edition</span>
+            <h3>Our Thing, Our Memories</h3>
+            <p>Khám phá bộ sưu tập mùa lễ hội giới hạn với những người bạn nhồi bông đáng yêu nhất.</p>
+            <a href="/design" class="btn-primary" style="margin-top:10px;padding:10px 24px;font-size:0.9rem;">Khám phá ngay</a>
+          </div>
+        </div>
+        <!-- Carousel Dots -->
+        <div class="carousel-dots-row" aria-label="Banner slider">
+          <button class="dot-btn" aria-label="Slide 1"></button>
+          <button class="dot-btn active" aria-label="Slide 2"></button>
+          <button class="dot-btn" aria-label="Slide 3"></button>
+        </div>
+      </div>
+
+      <!-- Right 2x2 Grid: 4 Cards with "Halloween" labels (Matching Wireframe Page 1) -->
+      <div class="collection-right-grid">
+        <!-- Card 1 -->
+        <article class="product-wireframe-card" onclick="quickAddToCart('Bunny Witch (Halloween)', 249000, 'Bunny', 'Pink')">
+          <div class="pw-img-wrap">
+            <img src="/static/image/background.png" alt="Halloween Product 1" />
+          </div>
+          <div class="pw-footer-label">
+            <span class="pw-title">Halloween</span>
+            <span class="pw-subtitle">Bunny Witch • 249.000đ</span>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="product-wireframe-card" onclick="quickAddToCart('Ghost Cat (Halloween)', 249000, 'Cat', 'Cream')">
+          <div class="pw-img-wrap">
+            <img src="/static/image/background.png" alt="Halloween Product 2" />
+          </div>
+          <div class="pw-footer-label">
+            <span class="pw-title">Halloween</span>
+            <span class="pw-subtitle">Ghost Cat • 249.000đ</span>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="product-wireframe-card" onclick="quickAddToCart('Pumpkin Bear (Halloween)', 249000, 'Bear', 'Caramel')">
+          <div class="pw-img-wrap">
+            <img src="/static/image/background.png" alt="Halloween Product 3" />
+          </div>
+          <div class="pw-footer-label">
+            <span class="pw-title">Halloween</span>
+            <span class="pw-subtitle">Pumpkin Bear • 249.000đ</span>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="product-wireframe-card" onclick="quickAddToCart('Capy Vampire (Halloween)', 249000, 'Capybara', 'Brown')">
+          <div class="pw-img-wrap">
+            <img src="/static/image/background.png" alt="Halloween Product 4" />
+          </div>
+          <div class="pw-footer-label">
+            <span class="pw-title">Halloween</span>
+            <span class="pw-subtitle">Capy Vampire • 249.000đ</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — FEATURE PRODUCT (Wireframe Page 1)
+       Layout: Left = Product 01 details + Buy now
+               Right = Large image with slider dots
+  ══════════════════════════════════════ -->
+  <section class="section feature-product-section" id="feature-product-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">Feature Product</h2>
+      <a href="/new-collection" class="view-all-link">View all →</a>
+    </div>
+
+    <div class="feature-product-box">
+      <!-- Left: Product 01 Text Information & Buy now -->
+      <div class="fp-left-info">
+        <span class="fp-tag">★ Featured Pick</span>
+        <h3 class="fp-title">Product 01</h3>
+        <h4 class="fp-collection-name">Our Memories bla blo</h4>
+        <div class="fp-description">
+          <p>Plushie plushie...</p>
+          <p>Happy happy happy...</p>
+          <p>Congrats congrats....</p>
+          <p class="desc-muted">(Description)</p>
+          <p style="margin-top:14px;font-size:0.92rem;line-height:1.6;opacity:0.85;">
+            Sản phẩm gấu bông thủ công cao cấp được chế tác tỉ mỉ từ chất liệu nhung lông siêu mềm mịn, mang lại cảm giác ôm trọn ấm áp và lưu giữ trọn vẹn từng khoảnh khắc đáng nhớ của bạn.
+          </p>
+        </div>
+        <div class="fp-price-row">
+          <span class="fp-price">299.000đ</span>
+        </div>
+        <div class="fp-actions">
+          <button class="btn-primary" onclick="quickAddToCart('Product 01 — Our Memories Collection', 299000, 'Bear', 'Caramel')">
+            Buy now 🛒
+          </button>
+          <a href="/design" class="btn-secondary" style="margin-left:12px;">
+            Customize this ✏️
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Large Featured Showcase Image with Carousel Indicator Dots -->
+      <div class="fp-right-showcase">
+        <div class="fp-img-container">
+          <!-- PLACEHOLDER: Featured product large photo -->
+          <img src="/static/image/background.png" alt="Feature Product 01" class="fp-main-image" />
+        </div>
+        <!-- Pagination indicator dots (Matching Wireframe Page 1: x: 460-564) -->
+        <div class="carousel-dots-row" aria-label="Feature product pagination">
+          <button class="dot-btn" aria-label="Photo 1"></button>
+          <button class="dot-btn active" aria-label="Photo 2"></button>
+          <button class="dot-btn" aria-label="Photo 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — OUR FEEDBACK (Wireframe Page 1)
+       5 horizontally placed feedback review cards
+  ══════════════════════════════════════ -->
+  <section class="section feedback-section" id="feedback-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">Our Feedback</h2>
+      <span style="font-size:0.9rem;color:var(--color-brown);opacity:0.8;">Hơn 1.000+ khách hàng hài lòng ⭐⭐⭐⭐⭐</span>
+    </div>
+
+    <!-- 5 feedback cards in row matching wireframe Page 1 -->
+    <div class="feedback-grid-row" role="list">
+      <!-- Feedback Card 1 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/background.png" alt="Customer review photo 1" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Gấu bông cực kỳ mềm mại, đường thêu tên rất sắc nét!"</p>
+          <span class="fb-author">★ Mai Anh</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 2 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/background.png" alt="Customer review photo 2" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Hộp quà gói siêu xinh xắn, bạn mình nhận được rất thích."</p>
+          <span class="fb-author">★ Đức Hoàng</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 3 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/background.png" alt="Customer review photo 3" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Phụ kiện nơ và áo len vừa vặn y như hình mô tả!"</p>
+          <span class="fb-author">★ Linh Chi</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 4 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/background.png" alt="Customer review photo 4" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Chất liệu cao cấp, ôm vừa tay, mùi thơm dịu dễ chịu."</p>
+          <span class="fb-author">★ Thảo My</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 5 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/background.png" alt="Customer review photo 5" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Giao hàng nhanh, đóng gói cẩn thận 10/10."</p>
+          <span class="fb-author">★ Gia Huy</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+{% endblock %}

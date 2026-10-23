@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}About Us — PlushieLab{% endblock %}
+
+{% block content %}
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span>About us</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ABOUT HERO
+       Background: background.png
+  ══════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="about-hero-overlay">
+      <div class="about-hero-text">
+        <h1>Our Story</h1>
+        <p>
+          PlushieLab was born from a simple idea — that a small, soft companion can hold
+          the biggest memories. We craft each plushie with love, care, and a whole lot of
+          cuddle-tested quality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       BRAND STORY
+  ══════════════════════════════════════ -->
+  <div class="section" style="max-width:780px;margin:0 auto;text-align:center">
+    <h2 class="section-heading">Little Things, Lasting Memories</h2>
+    <p style="font-size:1rem;line-height:1.85;color:var(--color-dark);opacity:0.8;margin-bottom:20px">
+      Founded in 2022 by a group of plushie-obsessed designers in Vietnam, PlushieLab started
+      as a small workshop experiment. We wanted to create something that felt personal —
+      not just another mass-produced toy, but a handcrafted friend you can truly call your own.
+    </p>
+    <p style="font-size:1rem;line-height:1.85;color:var(--color-dark);opacity:0.8">
+      Today, we offer a fully customizable plushie experience — choose your type, color, outfit,
+      accessories, and even have your name embroidered on it. Every plushie leaves our studio
+      wrapped in warmth and ready to make a lasting impression.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       VALUES / TEAM SECTION
+  ══════════════════════════════════════ -->
+  <div style="background:var(--color-dusty-pink);padding:72px 0">
+    <div class="section" style="padding-top:0;padding-bottom:0">
+      <h2 class="section-heading" style="text-align:center">What We Stand For</h2>
+      <div class="values-grid">
+
+        <div class="value-card">
+          <span class="value-icon">🧸</span>
+          <h3>Handcrafted Quality</h3>
+          <p>
+            Every plushie is made by hand in our studio, using premium hypoallergenic
+            materials that are safe, soft, and built to last through years of cuddles.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <span class="value-icon">✨</span>
+          <h3>Personal Touch</h3>
+          <p>
+            From custom embroidery to choice of outfit, each PlushieLab creation
+            is uniquely yours. No two are ever exactly the same.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <span class="value-icon">🌸</span>
+          <h3>Made with Love</h3>
+          <p>
+            We believe in the power of small, meaningful gifts. Each plushie carries
+            the emotion you intended — whether joy, comfort, or an "I miss you."
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════ -->
+  <div style="text-align:center;padding:72px 40px;background:var(--color-offwhite)">
+    <h2 style="font-family:var(--font-heading);font-style:italic;color:var(--color-brown);font-size:2rem;margin-bottom:14px">
+      Ready to create your own?
+    </h2>
+    <p style="color:var(--color-dark);opacity:0.7;margin-bottom:28px;font-size:1rem">
+      Start designing your unique plushie companion today.
+    </p>
+    <a href="/design" class="btn-primary" style="text-decoration:none;display:inline-block">
+      Design now →
+    </a>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}New Collection — PlushieLab{% endblock %}
+
+{% block content %}
+
+  <!-- ══════════════════════════════════════
+       BREADCRUMB (Wireframe Page 2)
+  ══════════════════════════════════════ -->
+  <div class="breadcrumb-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span>New collection</span>
+    </nav>
+  </div>
+
+  <div class="collection-page-content">
+    <!-- Main Page Heading -->
+    <h1 class="page-main-heading">Special Season - Our Thing, Our Memories</h1>
+
+    <!-- ══════════════════════════════════════
+         HERO SECTION: Special Season Banner Box (Wireframe Page 2)
+         Left = Large Product Showcase with Carousel Dots
+         Right = Product 01 info + Buy now
+    ══════════════════════════════════════ -->
+    <section class="special-season-banner">
+      <!-- Left: Showcase image + pagination dots -->
+      <div class="ss-banner-left">
+        <div class="ss-image-frame">
+          <!-- PLACEHOLDER: Special Season main image -->
+          <img src="/static/image/background.png" alt="Special Season Showcase" class="ss-main-img" />
+        </div>
+        <!-- Pagination dots (x: 309-412 in wireframe) -->
+        <div class="carousel-dots-row" aria-label="Product image pagination">
+          <button class="dot-btn" aria-label="Image 1"></button>
+          <button class="dot-btn active" aria-label="Image 2"></button>
+          <button class="dot-btn" aria-label="Image 3"></button>
+        </div>
+      </div>
+
+      <!-- Right: Product 01 details (Matching wireframe text exactly) -->
+      <div class="ss-banner-right">
+        <span class="badge-tag">Season Special</span>
+        <h2 class="ss-product-title">Product 01</h2>
+        <h3 class="ss-product-collection">Our Memories bla blo</h3>
+        
+        <div class="ss-product-desc-list">
+          <p class="desc-line">Plushie plushie...</p>
+          <p class="desc-line">Happy happy happy...</p>
+          <p class="desc-line">Congrats congrats....</p>
+          <p class="desc-muted">(Description)</p>
+        </div>
+
+        <p class="ss-intro-text">
+          Dòng sản phẩm giới hạn kỷ niệm mùa lễ hội với tông màu ấm áp và chất liệu vải nhung siêu êm ái. Từng đường khâu thủ công tinh xảo, phụ kiện tùy chọn linh hoạt theo phong cách của bạn.
+        </p>
+
+        <div class="ss-action-bar">
+          <span class="ss-price">299.000đ</span>
+          <button class="btn-primary" onclick="quickAddToCart('Product 01 — Special Season', 299000, 'Bunny', 'Cream')">
+            Buy now 🛒
+          </button>
+          <a href="/design" class="btn-secondary">Customize ✂️</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         COLLECTION GRID: 4 Collections (Wireframe Page 2)
+         Collection 01, 02, 03, 04 - "Meow meow"
+         Each with Image + Name + Carousel Dots
+    ══════════════════════════════════════ -->
+    <section class="section collections-quad-section">
+      <div class="quad-collections-grid">
+
+        <!-- Collection 01 -->
+        <div class="collection-block-item">
+          <div class="cblock-img-wrap">
+            <img src="/static/image/background.png" alt="Collection 01 - Meow meow" />
+          </div>
+          <div class="cblock-info">
+            <h3 class="cblock-title">Collection 01 - Meow meow</h3>
+            <p class="cblock-sub">Dành cho những người yêu thích sự ngọt ngào & tinh nghịch.</p>
+            <div class="cblock-actions">
+              <a href="/design" class="btn-primary btn-sm">Customize</a>
+              <button class="btn-secondary btn-sm" onclick="quickAddToCart('Collection 01 - Meow meow Plushie', 229000, 'Cat', 'Caramel')">Quick Buy</button>
+            </div>
+          </div>
+          <!-- Carousel dots under Collection 01 (Matching wireframe Page 2) -->
+          <div class="carousel-dots-row cblock-dots" aria-label="Collection 01 slider">
+            <button class="dot-btn" aria-label="Slide 1"></button>
+            <button class="dot-btn active" aria-label="Slide 2"></button>
+            <button class="dot-btn" aria-label="Slide 3"></button>
+          </div>
+        </div>
+
+        <!-- Collection 02 -->
+        <div class="collection-block-item">
+          <div class="cblock-img-wrap">
+            <img src="/static/image/background.png" alt="Collection 02 - Meow meow" />
+          </div>
+          <div class="cblock-info">
+            <h3 class="cblock-title">Collection 02 - Meow meow</h3>
+            <p class="cblock-sub">Phong cách ấm áp, gam màu nâu trầm pastel cổ điển.</p>
+            <div class="cblock-actions">
+              <a href="/design" class="btn-primary btn-sm">Customize</a>
+              <button class="btn-secondary btn-sm" onclick="quickAddToCart('Collection 02 - Meow meow Plushie', 229000, 'Cat', 'Brown')">Quick Buy</button>
+            </div>
+          </div>
+          <!-- Carousel dots under Collection 02 -->
+          <div class="carousel-dots-row cblock-dots" aria-label="Collection 02 slider">
+            <button class="dot-btn" aria-label="Slide 1"></button>
+            <button class="dot-btn active" aria-label="Slide 2"></button>
+            <button class="dot-btn" aria-label="Slide 3"></button>
+          </div>
+        </div>
+
+        <!-- Collection 03 -->
+        <div class="collection-block-item">
+          <div class="cblock-img-wrap">
+            <img src="/static/image/background.png" alt="Collection 03 - Meow meow" />
+          </div>
+          <div class="cblock-info">
+            <h3 class="cblock-title">Collection 03 - Meow meow</h3>
+            <p class="cblock-sub">Sắc hồng pastel dịu dàng dành tặng những người thương yêu.</p>
+            <div class="cblock-actions">
+              <a href="/design" class="btn-primary btn-sm">Customize</a>
+              <button class="btn-secondary btn-sm" onclick="quickAddToCart('Collection 03 - Meow meow Plushie', 229000, 'Bunny', 'Pink')">Quick Buy</button>
+            </div>
+          </div>
+          <!-- Carousel dots under Collection 03 -->
+          <div class="carousel-dots-row cblock-dots" aria-label="Collection 03 slider">
+            <button class="dot-btn" aria-label="Slide 1"></button>
+            <button class="dot-btn active" aria-label="Slide 2"></button>
+            <button class="dot-btn" aria-label="Slide 3"></button>
+          </div>
+        </div>
+
+        <!-- Collection 04 -->
+        <div class="collection-block-item">
+          <div class="cblock-img-wrap">
+            <img src="/static/image/background.png" alt="Collection 04 - Meow meow" />
+          </div>
+          <div class="cblock-info">
+            <h3 class="cblock-title">Collection 04 - Meow meow</h3>
+            <p class="cblock-sub">Phiên bản Capybara chill thư giãn cùng phụ kiện túi cói.</p>
+            <div class="cblock-actions">
+              <a href="/design" class="btn-primary btn-sm">Customize</a>
+              <button class="btn-secondary btn-sm" onclick="quickAddToCart('Collection 04 - Meow meow Plushie', 229000, 'Capybara', 'Brown')">Quick Buy</button>
+            </div>
+          </div>
+          <!-- Carousel dots under Collection 04 -->
+          <div class="carousel-dots-row cblock-dots" aria-label="Collection 04 slider">
+            <button class="dot-btn" aria-label="Slide 1"></button>
+            <button class="dot-btn active" aria-label="Slide 2"></button>
+            <button class="dot-btn" aria-label="Slide 3"></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+{% endblock %}

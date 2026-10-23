@@ -1,0 +1,466 @@
+{% extends "base.html" %}
+
+{% block title %}Design Your Custom Plushie — PlushieLab{% endblock %}
+
+{% block content %}
+
+  <!-- ══════════════════════════════════════
+       BREADCRUMB (Wireframes 3-9: Home / Design)
+  ══════════════════════════════════════ -->
+  <div class="breadcrumb-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span>Design</span>
+    </nav>
+  </div>
+
+  <div class="design-wizard-container">
+
+    <!-- ══════════════════════════════════════
+         PROGRESS BAR (Steps 1 to 4)
+         Matching Wireframe exact labels & circle layout
+    ══════════════════════════════════════ -->
+    <div class="wizard-progress-bar" role="progressbar" aria-label="Customization Progress">
+      <div class="progress-step active" data-step="1">
+        <div class="step-circle">1</div>
+        <span class="step-title">Choose your plush</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="progress-step" data-step="2">
+        <div class="step-circle">2</div>
+        <span class="step-title">Accessories</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="progress-step" data-step="3">
+        <div class="step-circle">3</div>
+        <span class="step-title">Services</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="progress-step" data-step="4">
+        <div class="step-circle">4</div>
+        <span class="step-title">Preview</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MAIN DESIGN WORKSPACE (Wireframes 3-9)
+         Layout:
+         [Side Nav Arrow Left]
+         [Plushie Preview Box]
+         [Configuration Panel]
+         [Side Nav Arrow Right]
+    ══════════════════════════════════════ -->
+    <div class="wizard-workspace-box">
+
+      <!-- Side Left Navigation Arrow (<) -->
+      <button class="wizard-side-arrow arrow-left" id="wizard-arrow-prev" aria-label="Previous step">
+        <span>‹</span>
+      </button>
+
+      <!-- Live Plushie Preview Card (Left Column) -->
+      <aside class="wizard-preview-card" aria-label="Live Plushie Preview">
+        <div class="preview-img-wrapper" id="preview-stage">
+          <!-- PLACEHOLDER: Main preview image -->
+          <img src="/static/image/background.png" alt="Custom Plushie Preview" class="preview-base-img" />
+          
+          <!-- Dynamic Overlay Badges -->
+          <div class="preview-dynamic-badge" id="preview-type-badge">
+            <span class="badge-icon" id="preview-badge-icon">🧸</span>
+            <span class="badge-text" id="preview-badge-text">Bear</span>
+          </div>
+
+          <div class="preview-color-indicator" id="preview-color-pill">
+            <span class="color-dot" id="preview-color-dot" style="background:#c8864a"></span>
+            <span id="preview-color-name">Caramel</span>
+          </div>
+        </div>
+
+        <div class="preview-footer-chips" id="preview-chips-container">
+          <span class="chip-item">Base: Bear</span>
+          <span class="chip-item">Caramel</span>
+        </div>
+      </aside>
+
+      <!-- Configuration Center Area (Changes with step) -->
+      <div class="wizard-config-container">
+
+        <!-- ─────────────────────────────────
+             STEP 1: CHOOSE YOUR PLUSH TYPE (Wireframe Page 3)
+        ───────────────────────────────── -->
+        <section class="wizard-step-panel active" data-step="1">
+          <div class="step-header-text">
+            <h2 class="step-main-title">1. Choose your plush type</h2>
+            <p class="step-sub-title">Lựa chọn loại gấu bông bạn mong muốn và màu sắc yêu thích</p>
+          </div>
+
+          <!-- Type Options -->
+          <div class="step-section-block">
+            <h3 class="group-label">Type Options:</h3>
+            <div class="type-selection-grid" data-group="type">
+              <button type="button" class="type-card selected" data-value="bear" data-name="Bear" data-icon="🐻">
+                <span class="type-icon">🐻</span>
+                <span class="type-name">Bear</span>
+                <span class="type-check">✓</span>
+              </button>
+              <button type="button" class="type-card" data-value="bunny" data-name="Bunny" data-icon="🐰">
+                <span class="type-icon">🐰</span>
+                <span class="type-name">Bunny</span>
+                <span class="type-check">✓</span>
+              </button>
+              <button type="button" class="type-card" data-value="cat" data-name="Cat" data-icon="🐱">
+                <span class="type-icon">🐱</span>
+                <span class="type-name">Cat</span>
+                <span class="type-check">✓</span>
+              </button>
+              <button type="button" class="type-card" data-value="capybara" data-name="Capybara" data-icon="🦫">
+                <span class="type-icon">🦫</span>
+                <span class="type-name">Capybara</span>
+                <span class="type-check">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Color Options -->
+          <div class="step-section-block">
+            <h3 class="group-label">Color Options:</h3>
+            <div class="color-selection-grid" data-group="color">
+              <div class="color-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="cream" data-color="#f5e6d3" style="background:#f5e6d3" aria-label="Cream"></button>
+                <span class="swatch-title">Cream</span>
+              </div>
+              <div class="color-swatch-box">
+                <button type="button" class="color-swatch-btn selected" data-value="caramel" data-color="#c8864a" style="background:#c8864a" aria-label="Caramel"></button>
+                <span class="swatch-title">Caramel</span>
+              </div>
+              <div class="color-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="pink" data-color="#f4b8b8" style="background:#f4b8b8" aria-label="Pink"></button>
+                <span class="swatch-title">Pink</span>
+              </div>
+              <div class="color-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="brown" data-color="#8b5e3c" style="background:#8b5e3c" aria-label="Brown"></button>
+                <span class="swatch-title">Brown</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             STEP 2: CHOOSE YOUR ACCESSORIES (Wireframes Pages 4-7)
+             Sub-tabs: Head (Bows/Hats), Tops, Bottoms, Accessories (Bags)
+        ───────────────────────────────── -->
+        <section class="wizard-step-panel" data-step="2">
+          <div class="step-header-text">
+            <h2 class="step-main-title">2. Choose your accessories</h2>
+            <p class="step-sub-title">Lựa chọn phụ kiện phù hợp cho gấu bông của bạn</p>
+          </div>
+
+          <div class="accessories-split-view">
+            <!-- Vertical Tab Sidebar (Matching wireframe left sidebar x: 329-446) -->
+            <nav class="acc-category-sidebar" role="tablist">
+              <button type="button" class="acc-sidebar-tab active" data-tab="head" role="tab" aria-selected="true">
+                Head
+              </button>
+              <button type="button" class="acc-sidebar-tab" data-tab="tops" role="tab" aria-selected="false">
+                Tops
+              </button>
+              <button type="button" class="acc-sidebar-tab" data-tab="bottoms" role="tab" aria-selected="false">
+                Bottoms
+              </button>
+              <button type="button" class="acc-sidebar-tab" data-tab="accessories" role="tab" aria-selected="false">
+                Accessories
+              </button>
+            </nav>
+
+            <!-- Tab Content Viewport -->
+            <div class="acc-tab-content-area">
+
+              <!-- TAB 1: HEAD (Wireframe Page 4 - Bows & Hats) -->
+              <div class="acc-tab-panel active" data-panel="head" role="tabpanel">
+                <!-- Bows row -->
+                <div class="acc-subgroup">
+                  <span class="acc-subgroup-title">Bows:</span>
+                  <div class="acc-items-row" data-group="acc-head-bow">
+                    <div class="acc-item-card" data-slot="head" data-value="Red Bow" data-price="30000">
+                      <img src="/static/image/background.png" alt="Red Bow" />
+                      <span class="item-name">Red Bow</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Pink Bow" data-price="30000">
+                      <img src="/static/image/background.png" alt="Pink Bow" />
+                      <span class="item-name">Pink Bow</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Cream Bow" data-price="30000">
+                      <img src="/static/image/background.png" alt="Cream Bow" />
+                      <span class="item-name">Cream Bow</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Brown Bow" data-price="30000">
+                      <img src="/static/image/background.png" alt="Brown Bow" />
+                      <span class="item-name">Brown Bow</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hats row -->
+                <div class="acc-subgroup" style="margin-top:16px;">
+                  <span class="acc-subgroup-title">Hats:</span>
+                  <div class="acc-items-row" data-group="acc-head-hat">
+                    <div class="acc-item-card" data-slot="head" data-value="Witch Hat" data-price="35000">
+                      <img src="/static/image/background.png" alt="Witch Hat" />
+                      <span class="item-name">Witch Hat</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Beret" data-price="35000">
+                      <img src="/static/image/background.png" alt="Beret" />
+                      <span class="item-name">Beret</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Beanie" data-price="35000">
+                      <img src="/static/image/background.png" alt="Beanie" />
+                      <span class="item-name">Beanie</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="head" data-value="Crown" data-price="40000">
+                      <img src="/static/image/background.png" alt="Crown" />
+                      <span class="item-name">Crown</span>
+                      <span class="item-price">+40.000đ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: TOPS (Wireframe Page 5 - Tops) -->
+              <div class="acc-tab-panel" data-panel="tops" role="tabpanel">
+                <div class="acc-subgroup">
+                  <span class="acc-subgroup-title">Tops:</span>
+                  <div class="acc-items-grid-2x2" data-group="acc-tops">
+                    <div class="acc-item-card" data-slot="tops" data-value="Warm Sweater" data-price="45000">
+                      <img src="/static/image/background.png" alt="Warm Sweater" />
+                      <span class="item-name">Sweater</span>
+                      <span class="item-price">+45.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="tops" data-value="Pastel T-Shirt" data-price="40000">
+                      <img src="/static/image/background.png" alt="Pastel T-Shirt" />
+                      <span class="item-name">T-Shirt</span>
+                      <span class="item-price">+40.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="tops" data-value="Lace Dress" data-price="50000">
+                      <img src="/static/image/background.png" alt="Lace Dress" />
+                      <span class="item-name">Dress</span>
+                      <span class="item-price">+50.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="tops" data-value="Cozy Cape" data-price="45000">
+                      <img src="/static/image/background.png" alt="Cozy Cape" />
+                      <span class="item-name">Cape</span>
+                      <span class="item-price">+45.000đ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 3: BOTTOMS (Wireframe Page 6 - Bottoms) -->
+              <div class="acc-tab-panel" data-panel="bottoms" role="tabpanel">
+                <div class="acc-subgroup">
+                  <span class="acc-subgroup-title">Bottoms:</span>
+                  <div class="acc-items-row" data-group="acc-bottoms">
+                    <div class="acc-item-card" data-slot="bottoms" data-value="Pleated Skirt" data-price="35000">
+                      <img src="/static/image/background.png" alt="Pleated Skirt" />
+                      <span class="item-name">Skirt</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="bottoms" data-value="Jeans Pants" data-price="40000">
+                      <img src="/static/image/background.png" alt="Jeans Pants" />
+                      <span class="item-name">Jeans</span>
+                      <span class="item-price">+40.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="bottoms" data-value="Corduroy Shorts" data-price="35000">
+                      <img src="/static/image/background.png" alt="Corduroy Shorts" />
+                      <span class="item-name">Shorts</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="bottoms" data-value="Overalls" data-price="45000">
+                      <img src="/static/image/background.png" alt="Overalls" />
+                      <span class="item-name">Overalls</span>
+                      <span class="item-price">+45.000đ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 4: ACCESSORIES / BAGS (Wireframe Page 7 - Bags) -->
+              <div class="acc-tab-panel" data-panel="accessories" role="tabpanel">
+                <div class="acc-subgroup">
+                  <span class="acc-subgroup-title">Bags:</span>
+                  <div class="acc-items-row" data-group="acc-bags">
+                    <div class="acc-item-card" data-slot="accessories" data-value="Mini Backpack" data-price="35000">
+                      <img src="/static/image/background.png" alt="Mini Backpack" />
+                      <span class="item-name">Backpack</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="accessories" data-value="Crossbody Bag" data-price="30000">
+                      <img src="/static/image/background.png" alt="Crossbody Bag" />
+                      <span class="item-name">Crossbody</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="accessories" data-value="Tote Bag" data-price="30000">
+                      <img src="/static/image/background.png" alt="Tote Bag" />
+                      <span class="item-name">Tote Bag</span>
+                      <span class="item-price">+30.000đ</span>
+                    </div>
+                    <div class="acc-item-card" data-slot="accessories" data-value="Straw Basket" data-price="35000">
+                      <img src="/static/image/background.png" alt="Straw Basket" />
+                      <span class="item-name">Basket</span>
+                      <span class="item-price">+35.000đ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             STEP 3: SERVICES (Wireframe Page 8)
+             Thêu tên cá nhân hóa & Gói quà
+        ───────────────────────────────── -->
+        <section class="wizard-step-panel" data-step="3">
+          <div class="step-header-text">
+            <h2 class="step-main-title">3. Services</h2>
+            <p class="step-sub-title">Lựa chọn thêu tên hoặc gói quà</p>
+          </div>
+
+          <!-- Section 1: Thêu tên cá nhân hóa -->
+          <div class="service-config-card">
+            <h3 class="service-heading">Dịch vụ thêu tên cá nhân hóa:</h3>
+            <div class="embroidery-input-wrapper">
+              <input
+                type="text"
+                id="embroidery-text-input"
+                class="embroidery-field"
+                placeholder="Nhập tên bạn mong muốn..."
+                maxlength="20"
+                aria-label="Nhập tên thêu"
+              />
+              <button type="button" class="service-action-btn" id="btn-submit-embroidery-name">
+                Thêm tên ✏️
+              </button>
+              <button type="button" class="service-action-btn" id="btn-submit-embroidery-icon">
+                Thêm icon ⭐
+              </button>
+            </div>
+            <p class="service-note">+35.000đ • Thêu chỉ kim tuyến thủ công sắc sảo lên áo hoặc tay gấu.</p>
+          </div>
+
+          <!-- Section 2: Dịch vụ gói quà -->
+          <div class="service-config-card" style="margin-top:20px;">
+            <h3 class="service-heading">Dịch vụ gói quà:</h3>
+            <div class="giftwrap-options-grid" data-group="gift-wrap">
+              <div class="gift-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="Cream" data-color="#f5e6d3" style="background:#f5e6d3" aria-label="Hộp Cream"></button>
+                <span class="swatch-title">Cream</span>
+              </div>
+              <div class="gift-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="Caramel" data-color="#c8864a" style="background:#c8864a" aria-label="Hộp Caramel"></button>
+                <span class="swatch-title">Caramel</span>
+              </div>
+              <div class="gift-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="Pink" data-color="#f4b8b8" style="background:#f4b8b8" aria-label="Hộp Pink"></button>
+                <span class="swatch-title">Pink</span>
+              </div>
+              <div class="gift-swatch-box">
+                <button type="button" class="color-swatch-btn" data-value="Brown" data-color="#8b5e3c" style="background:#8b5e3c" aria-label="Hộp Brown"></button>
+                <span class="swatch-title">Brown</span>
+              </div>
+            </div>
+            <p class="service-note">+25.000đ • Hộp quà sang trọng nơ ruy băng kèm thiệp chúc mừng viết tay.</p>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             STEP 4: PREVIEW & ORDER (Wireframe Page 9)
+             Your Order 3-column summary table + Total Price + Buy now
+        ───────────────────────────────── -->
+        <section class="wizard-step-panel" data-step="4">
+          <div class="step-header-text">
+            <h2 class="step-main-title">4. Preview</h2>
+            <p class="step-sub-title">Kiểm tra thông tin chi tiết đơn hàng trước khi hoàn tất</p>
+          </div>
+
+          <div class="order-summary-card">
+            <h3 class="order-card-heading">Your Order:</h3>
+
+            <!-- 3-Column Specification Grid (Matching Wireframe Page 9) -->
+            <div class="order-specs-grid">
+              <!-- Column 1: Type, Head, Bottoms -->
+              <div class="spec-col">
+                <div class="spec-item">
+                  <span class="spec-key">Type:</span>
+                  <span class="spec-val" id="summary-type">Bear</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-key">Head:</span>
+                  <span class="spec-val" id="summary-head">None</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-key">Bottoms:</span>
+                  <span class="spec-val" id="summary-bottoms">None</span>
+                </div>
+              </div>
+
+              <!-- Column 2: Color, Tops, Accessories -->
+              <div class="spec-col">
+                <div class="spec-item">
+                  <span class="spec-key">Color:</span>
+                  <span class="spec-val" id="summary-color">Caramel</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-key">Tops:</span>
+                  <span class="spec-val" id="summary-tops">None</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-key">Accessories:</span>
+                  <span class="spec-val" id="summary-accessories">None</span>
+                </div>
+              </div>
+
+              <!-- Column 3: Thêu, Gói -->
+              <div class="spec-col">
+                <div class="spec-item">
+                  <span class="spec-key">Thêu:</span>
+                  <span class="spec-val" id="summary-theu">None</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-key">Gói:</span>
+                  <span class="spec-val" id="summary-goi">None</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Price Bar & Buy Now Button (Matching Wireframe Page 9) -->
+            <div class="order-bottom-action-bar">
+              <div class="order-total-price-text">
+                Total price: <strong id="summary-total-price">199.000đ</strong>
+              </div>
+              <button type="button" class="btn-primary buy-now-btn" id="btn-final-buy-now">
+                Buy now 🛒
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /wizard-config-container -->
+
+      <!-- Side Right Navigation Arrow (>) -->
+      <button class="wizard-side-arrow arrow-right" id="wizard-arrow-next" aria-label="Next step">
+        <span>›</span>
+      </button>
+
+    </div><!-- /wizard-workspace-box -->
+
+  </div><!-- /design-wizard-container -->
+
+{% endblock %}
