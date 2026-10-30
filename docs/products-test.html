@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products API Test — PlushieLab</title>
+
+  <!-- Google Fonts: Playfair Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="static/css/style.css" />
+  
+  <!-- Slideshow Stylesheet -->
+  <link rel="stylesheet" href="static/css/slideshow.css" />
+
+  
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER (Wireframe Pages 1-9)
+       Logo on left, Nav links center, Icons right
+  ══════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Store Logo: uses existing logo.png directly without recreating or duplicating text -->
+      <a href="index.html" class="header-logo-link" aria-label="PlushieLab Home">
+        <img src="static/image/logo.png" alt="PlushieLab — Little Things, Lasting Memories" class="header-logo-img" />
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-item">Home</a></li>
+          <li><a href="new_collection.html" class="nav-item">New collection</a></li>
+          <li><a href="design.html" class="nav-item">Design</a></li>
+          <li><a href="about.html" class="nav-item">About us</a></li>
+          <li><a href="tracking.html" class="nav-item">Tracking</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Functional Icons (Native emoji / Unicode symbols) -->
+      <div class="header-actions">  
+        <button type="button" class="action-icon-btn cart-btn" id="btn-cart-toggle" aria-label="Shopping Cart" title="Giỏ hàng">
+          🛒
+          <span class="cart-count-badge" id="cart-badge-count">0</span>
+        </button>
+        <a href="about.html" class="action-icon-btn" aria-label="Account" title="Tài khoản">
+          👤
+        </a>
+        <!-- Mobile menu toggle -->
+        <button type="button" class="hamburger-btn" id="btn-mobile-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Quick Search Dropdown -->
+    <div class="search-dropdown-bar" id="search-bar" style="display:none;">
+      <div class="search-input-wrap">
+        <input type="text" id="quick-search-input" placeholder="Tìm kiếm gấu bông, nơ, áo len, bộ sưu tập..." />
+        <button type="button" class="btn-primary btn-sm" onclick="handleQuickSearch()">Tìm</button>
+        <button type="button" class="search-close-btn" onclick="toggleSearchBar()">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <img src="static/image/logo.png" alt="PlushieLab" height="36" />
+      <button type="button" class="close-drawer-btn" id="btn-close-drawer">✕</button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="new_collection.html">New collection</a></li>
+      <li><a href="design.html">Design</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="tracking.html">Tracking</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay" id="drawer-overlay"></div>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="page-body">
+    
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+  
+  <h1 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 10px;">
+    📦 Products API Test Console
+  </h1>
+  
+  <p style="text-align: center; color: #999; margin-bottom: 40px;">
+    Kiểm tra dữ liệu sản phẩm từ products.json • Mở DevTools (F12) để xem console
+  </p>
+
+  <!-- Buttons for Testing -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px;">
+    
+    <button onclick="testGetAllProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      ✓ Lấy Tất Cả Sản Phẩm
+    </button>
+
+    <button onclick="testGetHalloweenProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎃 Lấy Sản Phẩm Halloween
+    </button>
+
+    <button onclick="testGetCollectionProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐱 Lấy Collection Products
+    </button>
+
+    <button onclick="testGetFeaturedProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      ⭐ Lấy Featured Products
+    </button>
+
+    <button onclick="testGetProductsByType('bear')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐻 Lấy Sản Phẩm Bear
+    </button>
+
+    <button onclick="testGetProductsByType('cat')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐱 Lấy Sản Phẩm Cat
+    </button>
+
+    <button onclick="testSearchProducts('Meow')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🔍 Tìm Kiếm 'Meow'
+    </button>
+
+    <button onclick="testGetTypes()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      📋 Lấy Types
+    </button>
+
+    <button onclick="testGetColors()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎨 Lấy Colors
+    </button>
+
+    <button onclick="testGetAccessories('head')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      👑 Lấy Accessories (Head)
+    </button>
+
+    <button onclick="testGetServices()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎁 Lấy Services
+    </button>
+
+    <button onclick="testSortByPrice()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      💰 Sắp Xếp Theo Giá
+    </button>
+
+  </div>
+
+  <!-- Display Results -->
+  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; max-height: 600px; overflow-y: auto;">
+    <h3 style="margin-top: 0;">📊 Kết Quả:</h3>
+    <pre id="results" style="background: white; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+Nhấn một nút ở trên để xem kết quả (JSON format)
+    </pre>
+  </div>
+
+  <!-- Info Section -->
+  <div style="margin-top: 40px; padding: 20px; background: #e8f4f8; border-radius: 8px; border-left: 4px solid #4facfe;">
+    <h3 style="margin-top: 0;">ℹ️ Thông Tin</h3>
+    <ul style="line-height: 1.8;">
+      <li>Mở <code>DevTools</code> (F12) để xem chi tiết trong console</li>
+      <li>Mở <code>Network tab</code> để xem request GET /static/data/products.json</li>
+      <li>Tất cả method là <code>async</code> - sử dụng <code>await</code> hoặc <code>.then()</code></li>
+      <li>Global instance: <code>productsAPI</code> - có sẵn trong browser</li>
+      <li>File data: <code>static/data/products.json</code></li>
+      <li>File API: <code>static/js/products-api.js</code></li>
+    </ul>
+  </div>
+
+  <!-- Code Examples -->
+  <div style="margin-top: 30px; background: #fff9e6; padding: 20px; border-radius: 8px; border-left: 4px solid #f5a623;">
+    <h3 style="margin-top: 0;">💻 Ví Dụ Code</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6;">
+// Ở trong console hoặc file JS:
+
+// 1. Lấy tất cả sản phẩm
+const products = await productsAPI.getAllProducts();
+
+// 2. Lấy sản phẩm theo ID
+const product = await productsAPI.getProductById('PROD-001');
+
+// 3. Lấy Halloween products
+const halloween = await productsAPI.getHalloweenProducts();
+
+// 4. Tìm kiếm
+const results = await productsAPI.searchProducts('Bunnie');
+
+// 5. Lấy phụ kiện
+const heads = await productsAPI.getAccessoriesByType('head');
+
+// 6. Sắp xếp theo giá
+const sorted = await productsAPI.getProductsSortedByPrice('asc');
+    </pre>
+  </div>
+
+</div>
+
+<script>
+// Các function test
+
+async function testGetAllProducts() {
+  const results = await productsAPI.getAllProducts();
+  displayResults('Tất Cả Sản Phẩm', results);
+  console.log('All products:', results);
+}
+
+async function testGetHalloweenProducts() {
+  const results = await productsAPI.getHalloweenProducts();
+  displayResults('Sản Phẩm Halloween', results);
+  console.log('Halloween products:', results);
+}
+
+async function testGetCollectionProducts() {
+  const results = await productsAPI.getCollectionProducts();
+  displayResults('Collection Products', results);
+  console.log('Collection products:', results);
+}
+
+async function testGetFeaturedProducts() {
+  const results = await productsAPI.getFeaturedProducts();
+  displayResults('Featured Products', results);
+  console.log('Featured products:', results);
+}
+
+async function testGetProductsByType(type) {
+  const results = await productsAPI.getProductsByType(type);
+  displayResults(`Sản Phẩm Loại ${type}`, results);
+  console.log(`Products by type (${type}):`, results);
+}
+
+async function testSearchProducts(keyword) {
+  const results = await productsAPI.searchProducts(keyword);
+  displayResults(`Kết Quả Tìm Kiếm "${keyword}"`, results);
+  console.log(`Search results for "${keyword}":`, results);
+}
+
+async function testGetTypes() {
+  const results = await productsAPI.getTypes();
+  displayResults('Loại Gấu Bông', results);
+  console.log('Types:', results);
+}
+
+async function testGetColors() {
+  const results = await productsAPI.getColors();
+  displayResults('Màu Sắc', results);
+  console.log('Colors:', results);
+}
+
+async function testGetAccessories(type) {
+  const results = await productsAPI.getAccessoriesByType(type);
+  displayResults(`Phụ Kiện (${type})`, results);
+  console.log(`Accessories (${type}):`, results);
+}
+
+async function testGetServices() {
+  const results = await productsAPI.getServices();
+  displayResults('Dịch Vụ', results);
+  console.log('Services:', results);
+}
+
+async function testSortByPrice() {
+  const results = await productsAPI.getProductsSortedByPrice('asc');
+  displayResults('Sản Phẩm Sắp Xếp Theo Giá (Thấp → Cao)', results);
+  console.log('Sorted by price:', results);
+}
+
+function displayResults(title, data) {
+  const el = document.getElementById('results');
+  el.textContent = `${title}\n\n${JSON.stringify(data, null, 2)}`;
+}
+</script>
+
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       INTERACTIVE CART & CHECKOUT DRAWER
+  ══════════════════════════════════════ -->
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <h3>Your Cart 🧸</h3>
+      <button type="button" class="cart-close-btn" id="btn-close-cart">✕</button>
+    </div>
+
+    <div class="cart-items-container" id="cart-items-list">
+      <!-- Populated dynamically by JavaScript -->
+      <div class="cart-empty-message">
+        <p>Looks like your cart is feeling lonely!</p>
+        <a href="design.html" class="btn-primary btn-sm" style="margin-top:12px;display:inline-block;">Thiết kế gấu ngay ✂️</a>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+      <div class="cart-pricing-summary">
+        <div class="price-row">
+          <span>Tạm tính:</span>
+          <strong id="cart-subtotal">0đ</strong>
+        </div>
+        <div class="price-row">
+          <span>Shipping:</span>
+          <span>Free (All address)</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total:</span>
+          <strong id="cart-total" class="brand-price">0đ</strong>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div class="checkout-form-box" id="checkout-form-box">
+        <h4>Your Information:</h4>
+        <input type="text" id="ship-name" class="checkout-input" placeholder="Họ và tên của bạn *" required />
+        <input type="tel" id="ship-phone" class="checkout-input" placeholder="Số điện thoại liên hệ *" required />
+        <input type="text" id="ship-address" class="checkout-input" placeholder="Địa chỉ nhận hàng (Số nhà, đường, quận/huyện) *" required />
+        <textarea id="ship-note" class="checkout-input" rows="2" placeholder="Ghi chú đặc biệt cho PlushieLab..."></textarea>
+        
+        <button type="button" class="btn-primary btn-block" id="btn-complete-order" onclick="submitOrder()">
+          Complete Your Order! 🎉
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER (Matching Wireframe Page 1 exactly)
+       Top brown bar with “Little Things, Lasting Memories”
+       Bottom area with centered Logo & links
+  ══════════════════════════════════════ -->
+  <footer class="site-footer">
+    <!-- Top Dark Brown Accent Banner (Wireframe Page 1: x: -64 to 1110, y: 2071 to 2120) -->
+    <div class="footer-slogan-bar">
+      <p class="slogan-bar-text">“Little Things, Lasting Memories”</p>
+    </div>
+
+    <!-- Main Footer Container -->
+    <div class="footer-main-area">
+      <div class="footer-center-branding">
+        <!-- Logo file directly reused -->
+        <a href="index.html">
+          <img src="static/image/logo.png" alt="PlushieLab" class="footer-logo-img" />
+        </a>
+        <p class="footer-motto">“Little Things, Lasting Memories”</p>
+        <p class="footer-description">
+          Online store specializing in customizable plush toys & personalized gifts.
+        </p>
+      </div>
+
+      <div class="footer-nav-grid">
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new_collection.html">New collection</a></li>
+            <li><a href="design.html">Design your own plushie!</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="tracking.html">Tracking your order</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Feature services</h4>
+          <ul>
+            <li><a href="design.html">Personalized Embroidery</a></li>
+            <li><a href="design.html">Gift Wrapping & Greeting Cards</a></li>
+            <li><a href="new_collection.html">Halloween Limited Edition</a></li>
+            <li><a href="about.html">Bulk Custom Plushie Orders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>📍 Ha Noi, Vietnam </li>
+            <li>💌 plushielab.contact@gmail.com</li>
+            <li>📞 Hotline: 1900 8866 (9:00 - 21:00)</li>
+            <li>📸 Instagram: @plushielab.official</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        <p>© 2026 PlushieLab. All rights reserved. Made with love in Vietnam 🧸</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Products API - Load product data -->
+  <script src="static/js/products-api.js"></script>
+  
+  <!-- Site Script -->
+  <script src="static/js/main.js"></script>
+  
+  <!-- Slideshow Script -->
+  <script src="static/js/slideshow.js"></script>
+  
+  
+
+</body>
+</html>

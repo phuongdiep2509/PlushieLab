@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Collection — PlushieLab</title>
+
+  <!-- Google Fonts: Playfair Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="static/css/style.css" />
+  
+  <!-- Slideshow Stylesheet -->
+  <link rel="stylesheet" href="static/css/slideshow.css" />
+
+  
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER (Wireframe Pages 1-9)
+       Logo on left, Nav links center, Icons right
+  ══════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Store Logo: uses existing logo.png directly without recreating or duplicating text -->
+      <a href="index.html" class="header-logo-link" aria-label="PlushieLab Home">
+        <img src="static/image/logo.png" alt="PlushieLab — Little Things, Lasting Memories" class="header-logo-img" />
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-item">Home</a></li>
+          <li><a href="new_collection.html" class="nav-item">New collection</a></li>
+          <li><a href="design.html" class="nav-item">Design</a></li>
+          <li><a href="about.html" class="nav-item">About us</a></li>
+          <li><a href="tracking.html" class="nav-item">Tracking</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Functional Icons (Native emoji / Unicode symbols) -->
+      <div class="header-actions">  
+        <button type="button" class="action-icon-btn cart-btn" id="btn-cart-toggle" aria-label="Shopping Cart" title="Giỏ hàng">
+          🛒
+          <span class="cart-count-badge" id="cart-badge-count">0</span>
+        </button>
+        <a href="about.html" class="action-icon-btn" aria-label="Account" title="Tài khoản">
+          👤
+        </a>
+        <!-- Mobile menu toggle -->
+        <button type="button" class="hamburger-btn" id="btn-mobile-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Quick Search Dropdown -->
+    <div class="search-dropdown-bar" id="search-bar" style="display:none;">
+      <div class="search-input-wrap">
+        <input type="text" id="quick-search-input" placeholder="Tìm kiếm gấu bông, nơ, áo len, bộ sưu tập..." />
+        <button type="button" class="btn-primary btn-sm" onclick="handleQuickSearch()">Tìm</button>
+        <button type="button" class="search-close-btn" onclick="toggleSearchBar()">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <img src="static/image/logo.png" alt="PlushieLab" height="36" />
+      <button type="button" class="close-drawer-btn" id="btn-close-drawer">✕</button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="new_collection.html">New collection</a></li>
+      <li><a href="design.html">Design</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="tracking.html">Tracking</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay" id="drawer-overlay"></div>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="page-body">
+    
+
+  <!-- ══════════════════════════════════════
+       BREADCRUMB (Wireframe Page 2)
+  ══════════════════════════════════════ -->
+  <div class="breadcrumb-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>New collection</span>
+    </nav>
+  </div>
+
+  <div class="collection-page-content">
+    <!-- Main Page Heading -->
+    <h1 class="page-main-heading">🌟 Our Collections — Little Things, Lasting Memories</h1>
+
+    <!-- ══════════════════════════════════════
+         HERO SECTION: Featured Pick Banner Carousel (Auto-slide)
+         Displays all 4 collections with auto rotation
+    ══════════════════════════════════════ -->
+    <section class="special-season-banner-carousel">
+      <div class="carousel-container" id="featured-banner-carousel">
+        <!-- Will be loaded by JavaScript -->
+      </div>
+      <!-- Carousel dots for navigation -->
+      <div class="carousel-dots-row carousel-controls" id="carousel-dots" aria-label="Collection carousel pagination">
+        <!-- Will be generated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         COLLECTION GRID: All Collections
+         Each collection has its own carousel showing all products in that collection
+    ══════════════════════════════════════ -->
+    <section class="section collections-quad-section">
+      <div class="section-heading-row">
+        <h2 class="section-heading">📦 All Collections</h2>
+      </div>
+      <div class="quad-collections-grid" id="collections-grid">
+        <!-- Will be loaded by JavaScript -->
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCRIPT: Load Carousel & Collections từ JSON
+  ══════════════════════════════════════ -->
+  <script>
+    let currentSlide = 0;
+    let bannerCarouselInterval;
+    const carouselProductIds = ['PROD-002', 'PROD-005', 'PROD-011', 'PROD-016'];
+    
+    async function loadFeaturedBannerCarousel() {
+      // Lấy 4 products cho carousel
+      const products = await Promise.all(
+        carouselProductIds.map(id => productsAPI.getProductById(id))
+      );
+      
+      if (products.length === 0) return;
+      
+      // Tạo carousel slides
+      const carouselContainer = document.getElementById('featured-banner-carousel');
+      const slidesHtml = products.map((product, idx) => `
+        <div class="carousel-slide special-season-banner ${idx === 0 ? 'active' : ''}" data-slide="${idx}">
+          <!-- Left: Showcase image -->
+          <div class="ss-banner-left">
+            <div class="ss-image-frame">
+              <img src="${product.image}" alt="${product.name}" class="ss-main-img" />
+            </div>
+          </div>
+
+          <!-- Right: Product details -->
+          <div class="ss-banner-right">
+            <span class="badge-tag">🌟 ${product.collection}</span>
+            <h2 class="ss-product-title">${product.name}</h2>
+            <h3 class="ss-product-collection">${product.typeName} • ${product.colorName}</h3>
+            
+            <div class="ss-product-desc-list">
+              <p class="desc-line">${product.description}</p>
+              <p class="desc-muted">Rating: ⭐ ${product.ratings} (${product.reviews} reviews)</p>
+            </div>
+
+            <p class="ss-intro-text">
+              Thoughtfully designed with exquisite hand-stitched details and customizable accessories to match your personal style.
+            </p>
+
+            <div class="ss-action-bar">
+              <span class="ss-price">${product.basePrice.toLocaleString('vi-VN')}đ</span>
+              <button class="btn-primary" onclick="quickAddToCart('${product.name}', ${product.basePrice}, '${product.typeName}', '${product.colorName}', '${product.image}', '${product.id}')">
+                Buy now 🛒
+              </button>
+              <a href="design.html" class="btn-secondary">Customize ✂️</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      carouselContainer.innerHTML = slidesHtml;
+      
+      // Tạo dots
+      const dotsContainer = document.getElementById('carousel-dots');
+      const dotsHtml = products.map((_, idx) => `
+        <button class="dot-btn ${idx === 0 ? 'active' : ''}" aria-label="Slide ${idx + 1}" onclick="goToSlide(${idx})"></button>
+      `).join('');
+      
+      dotsContainer.innerHTML = dotsHtml;
+      
+      // Ensure first slide is active
+      setTimeout(() => {
+        showSlide(0, products.length);
+        startCarouselAutoplay(products.length);
+      }, 100);
+    }
+    
+    function showSlide(n, total) {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('#carousel-dots .dot-btn');
+      
+      // Loop around
+      currentSlide = ((n % total) + total) % total;
+      
+      // Ẩn tất cả slides
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+      
+      // Hiển thị slide hiện tại
+      if (slides[currentSlide]) {
+        slides[currentSlide].classList.add('active');
+      }
+      
+      // Cập nhật dots
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+      
+      console.log(`Showing slide ${currentSlide + 1} of ${total}`);
+    }
+    
+    function goToSlide(n) {
+      clearInterval(bannerCarouselInterval);
+      const total = carouselProductIds.length;
+      showSlide(n, total);
+      startCarouselAutoplay(total);
+    }
+    
+    function startCarouselAutoplay(total) {
+      bannerCarouselInterval = setInterval(() => {
+        showSlide(currentSlide + 1, total);
+      }, 4000); // Đổi slide mỗi 4 giây
+    }
+
+    async function loadCollections() {
+      // Define collection groups with their products
+      const collections = [
+        {
+          name: "Little Days",
+          productIds: ['PROD-005', 'PROD-006', 'PROD-008', 'PROD-009']
+        },
+        {
+          name: "Out & About",
+          productIds: ['PROD-007', 'PROD-010', 'PROD-011', 'PROD-012']
+        },
+        {
+          name: "Wanderland",
+          productIds: ['PROD-013', 'PROD-014', 'PROD-015', 'PROD-016']
+        }
+      ];
+      
+      const grid = document.getElementById('collections-grid');
+      let collectionIndex = 0;
+      
+      const html = await Promise.all(collections.map(async (collection, colIdx) => {
+        // Load all products for this collection
+        const products = await Promise.all(
+          collection.productIds.map(id => productsAPI.getProductById(id))
+        );
+        
+        // Create carousel for this collection
+        const carouselId = `carousel-collection-${colIdx}`;
+        const dotsId = `dots-collection-${colIdx}`;
+        
+        const slides = products.map((product, idx) => `
+          <div class="collection-carousel-slide ${idx === 0 ? 'active' : ''}" data-collection="${colIdx}" data-slide="${idx}">
+            <div class="cblock-img-wrap">
+              <img src="${product.image}" alt="${product.name}" />
+            </div>
+          </div>
+        `).join('');
+        
+        const dots = products.map((_, idx) => `
+          <button class="dot-btn ${idx === 0 ? 'active' : ''}" onclick="goToCollectionSlide(${colIdx}, ${idx})"></button>
+        `).join('');
+        
+        // Lưu dữ liệu sản phẩm của collection này để Quick Buy đúng sản phẩm
+        window.collectionProductsData = window.collectionProductsData || {};
+        window.collectionProductsData[colIdx] = products;
+
+        return `
+          <div class="collection-block-item" data-collection-idx="${colIdx}">
+            <!-- Carousel container -->
+            <div class="collection-carousel-container" id="${carouselId}">
+              ${slides}
+            </div>
+            
+            <!-- Collection info -->
+            <div class="cblock-info">
+              <h3 class="cblock-title">${products[0].collection}</h3>
+              <p class="cblock-sub">${products[0].description.substring(0, 60)}...</p>
+              <div class="cblock-actions">
+                <a href="design.html" class="btn-primary btn-sm">Customize</a>
+                <button class="btn-secondary btn-sm" onclick="quickBuyCollection(${colIdx})">Quick Buy</button>
+              </div>
+            </div>
+            
+            <!-- Carousel dots -->
+            <div class="carousel-dots-row cblock-dots" id="${dotsId}">
+              ${dots}
+            </div>
+          </div>
+        `;
+      }));
+      
+      grid.innerHTML = (await Promise.all(html)).join('');
+      
+      // Initialize autoplay for each collection carousel
+      collections.forEach((collection, idx) => {
+        startCollectionCarouselAutoplay(idx, collection.productIds.length);
+      });
+    }
+    
+    // Global state for collection carousels
+    const collectionCarouselState = {};
+    
+    // Quick Buy sản phẩm đang active của collection
+    function quickBuyCollection(collectionIdx) {
+      const carouselId = `carousel-collection-${collectionIdx}`;
+      const carousel = document.getElementById(carouselId);
+      const activeSlide = carousel ? carousel.querySelector('.collection-carousel-slide.active') : null;
+      const slideIdx = activeSlide ? (parseInt(activeSlide.dataset.slide) || 0) : 0;
+      const products = window.collectionProductsData ? window.collectionProductsData[collectionIdx] : null;
+      const product = (products && products[slideIdx]) ? products[slideIdx] : (products ? products[0] : null);
+      if (product) {
+        quickAddToCart(product.name, product.basePrice, product.typeName, product.colorName, product.image, product.id);
+      }
+    }
+
+    function goToCollectionSlide(collectionIdx, slideIdx) {
+      const carouselId = `carousel-collection-${collectionIdx}`;
+      const dotsId = `dots-collection-${collectionIdx}`;
+      
+      const carousel = document.getElementById(carouselId);
+      const dots = document.querySelectorAll(`#${dotsId} .dot-btn`);
+      
+      // Hide all slides
+      carousel.querySelectorAll('.collection-carousel-slide').forEach(slide => {
+        slide.classList.remove('active');
+      });
+      
+      // Show target slide
+      carousel.querySelectorAll(`[data-collection="${collectionIdx}"][data-slide="${slideIdx}"]`)[0]?.classList.add('active');
+      
+      // Update dots
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === slideIdx);
+      });
+      
+      // Reset autoplay
+      clearInterval(collectionCarouselState[`col-${collectionIdx}`]);
+      startCollectionCarouselAutoplay(collectionIdx, dots.length);
+    }
+    
+    function startCollectionCarouselAutoplay(collectionIdx, totalSlides) {
+      collectionCarouselState[`col-${collectionIdx}`] = setInterval(() => {
+        const carouselId = `carousel-collection-${collectionIdx}`;
+        const carousel = document.getElementById(carouselId);
+        
+        if (!carousel) return;
+        
+        const slides = carousel.querySelectorAll('.collection-carousel-slide');
+        let currentIdx = 0;
+        
+        slides.forEach((slide, idx) => {
+          if (slide.classList.contains('active')) {
+            currentIdx = idx;
+          }
+        });
+        
+        goToCollectionSlide(collectionIdx, (currentIdx + 1) % totalSlides);
+      }, 4000); // Change slide every 4 seconds
+    }
+
+    // Load khi trang ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', async () => {
+        await loadFeaturedBannerCarousel();
+        await loadCollections();
+      });
+    } else {
+      loadFeaturedBannerCarousel();
+      loadCollections();
+    }
+  </script>
+
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       INTERACTIVE CART & CHECKOUT DRAWER
+  ══════════════════════════════════════ -->
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <h3>Your Cart 🧸</h3>
+      <button type="button" class="cart-close-btn" id="btn-close-cart">✕</button>
+    </div>
+
+    <div class="cart-items-container" id="cart-items-list">
+      <!-- Populated dynamically by JavaScript -->
+      <div class="cart-empty-message">
+        <p>Looks like your cart is feeling lonely!</p>
+        <a href="design.html" class="btn-primary btn-sm" style="margin-top:12px;display:inline-block;">Thiết kế gấu ngay ✂️</a>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+      <div class="cart-pricing-summary">
+        <div class="price-row">
+          <span>Tạm tính:</span>
+          <strong id="cart-subtotal">0đ</strong>
+        </div>
+        <div class="price-row">
+          <span>Shipping:</span>
+          <span>Free (All address)</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total:</span>
+          <strong id="cart-total" class="brand-price">0đ</strong>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div class="checkout-form-box" id="checkout-form-box">
+        <h4>Your Information:</h4>
+        <input type="text" id="ship-name" class="checkout-input" placeholder="Họ và tên của bạn *" required />
+        <input type="tel" id="ship-phone" class="checkout-input" placeholder="Số điện thoại liên hệ *" required />
+        <input type="text" id="ship-address" class="checkout-input" placeholder="Địa chỉ nhận hàng (Số nhà, đường, quận/huyện) *" required />
+        <textarea id="ship-note" class="checkout-input" rows="2" placeholder="Ghi chú đặc biệt cho PlushieLab..."></textarea>
+        
+        <button type="button" class="btn-primary btn-block" id="btn-complete-order" onclick="submitOrder()">
+          Complete Your Order! 🎉
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER (Matching Wireframe Page 1 exactly)
+       Top brown bar with “Little Things, Lasting Memories”
+       Bottom area with centered Logo & links
+  ══════════════════════════════════════ -->
+  <footer class="site-footer">
+    <!-- Top Dark Brown Accent Banner (Wireframe Page 1: x: -64 to 1110, y: 2071 to 2120) -->
+    <div class="footer-slogan-bar">
+      <p class="slogan-bar-text">“Little Things, Lasting Memories”</p>
+    </div>
+
+    <!-- Main Footer Container -->
+    <div class="footer-main-area">
+      <div class="footer-center-branding">
+        <!-- Logo file directly reused -->
+        <a href="index.html">
+          <img src="static/image/logo.png" alt="PlushieLab" class="footer-logo-img" />
+        </a>
+        <p class="footer-motto">“Little Things, Lasting Memories”</p>
+        <p class="footer-description">
+          Online store specializing in customizable plush toys & personalized gifts.
+        </p>
+      </div>
+
+      <div class="footer-nav-grid">
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new_collection.html">New collection</a></li>
+            <li><a href="design.html">Design your own plushie!</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="tracking.html">Tracking your order</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Feature services</h4>
+          <ul>
+            <li><a href="design.html">Personalized Embroidery</a></li>
+            <li><a href="design.html">Gift Wrapping & Greeting Cards</a></li>
+            <li><a href="new_collection.html">Halloween Limited Edition</a></li>
+            <li><a href="about.html">Bulk Custom Plushie Orders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>📍 Ha Noi, Vietnam </li>
+            <li>💌 plushielab.contact@gmail.com</li>
+            <li>📞 Hotline: 1900 8866 (9:00 - 21:00)</li>
+            <li>📸 Instagram: @plushielab.official</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        <p>© 2026 PlushieLab. All rights reserved. Made with love in Vietnam 🧸</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Products API - Load product data -->
+  <script src="static/js/products-api.js"></script>
+  
+  <!-- Site Script -->
+  <script src="static/js/main.js"></script>
+  
+  <!-- Slideshow Script -->
+  <script src="static/js/slideshow.js"></script>
+  
+  
+
+</body>
+</html>
