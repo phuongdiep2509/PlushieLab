@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}PlushieLab — Little Things, Lasting Memories{% endblock %}</title>
+
+  <!-- Google Fonts: Playfair Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css" />
+  
+  <!-- Slideshow Stylesheet -->
+  <link rel="stylesheet" href="/static/css/slideshow.css" />
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER (Wireframe Pages 1-9)
+       Logo on left, Nav links center, Icons right
+  ══════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Store Logo: uses existing logo.png directly without recreating or duplicating text -->
+      <a href="/" class="header-logo-link" aria-label="PlushieLab Home">
+        <img src="/static/image/logo.png" alt="PlushieLab — Little Things, Lasting Memories" class="header-logo-img" />
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="/" class="nav-item">Home</a></li>
+          <li><a href="/new-collection" class="nav-item">New collection</a></li>
+          <li><a href="/design" class="nav-item">Design</a></li>
+          <li><a href="/about" class="nav-item">About us</a></li>
+          <li><a href="/tracking" class="nav-item">Tracking</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Functional Icons (Native emoji / Unicode symbols) -->
+      <div class="header-actions">  
+        <button type="button" class="action-icon-btn cart-btn" id="btn-cart-toggle" aria-label="Shopping Cart" title="Giỏ hàng">
+          🛒
+          <span class="cart-count-badge" id="cart-badge-count">0</span>
+        </button>
+        <a href="/about" class="action-icon-btn" aria-label="Account" title="Tài khoản">
+          👤
+        </a>
+        <!-- Mobile menu toggle -->
+        <button type="button" class="hamburger-btn" id="btn-mobile-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Quick Search Dropdown -->
+    <div class="search-dropdown-bar" id="search-bar" style="display:none;">
+      <div class="search-input-wrap">
+        <input type="text" id="quick-search-input" placeholder="Tìm kiếm gấu bông, nơ, áo len, bộ sưu tập..." />
+        <button type="button" class="btn-primary btn-sm" onclick="handleQuickSearch()">Tìm</button>
+        <button type="button" class="search-close-btn" onclick="toggleSearchBar()">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <img src="/static/image/logo.png" alt="PlushieLab" height="36" />
+      <button type="button" class="close-drawer-btn" id="btn-close-drawer">✕</button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/new-collection">New collection</a></li>
+      <li><a href="/design">Design</a></li>
+      <li><a href="/about">About us</a></li>
+      <li><a href="/tracking">Tracking</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay" id="drawer-overlay"></div>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="page-body">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ══════════════════════════════════════
+       INTERACTIVE CART & CHECKOUT DRAWER
+  ══════════════════════════════════════ -->
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <h3>Your Cart 🧸</h3>
+      <button type="button" class="cart-close-btn" id="btn-close-cart">✕</button>
+    </div>
+
+    <div class="cart-items-container" id="cart-items-list">
+      <!-- Populated dynamically by JavaScript -->
+      <div class="cart-empty-message">
+        <p>Looks like your cart is feeling lonely!</p>
+        <a href="/design" class="btn-primary btn-sm" style="margin-top:12px;display:inline-block;">Thiết kế gấu ngay ✂️</a>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+      <div class="cart-pricing-summary">
+        <div class="price-row">
+          <span>Tạm tính:</span>
+          <strong id="cart-subtotal">0đ</strong>
+        </div>
+        <div class="price-row">
+          <span>Shipping:</span>
+          <span>Free (All address)</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total:</span>
+          <strong id="cart-total" class="brand-price">0đ</strong>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div class="checkout-form-box" id="checkout-form-box">
+        <h4>Your Information:</h4>
+        <input type="text" id="ship-name" class="checkout-input" placeholder="Họ và tên của bạn *" required />
+        <input type="tel" id="ship-phone" class="checkout-input" placeholder="Số điện thoại liên hệ *" required />
+        <input type="text" id="ship-address" class="checkout-input" placeholder="Địa chỉ nhận hàng (Số nhà, đường, quận/huyện) *" required />
+        <textarea id="ship-note" class="checkout-input" rows="2" placeholder="Ghi chú đặc biệt cho PlushieLab..."></textarea>
+        
+        <button type="button" class="btn-primary btn-block" id="btn-complete-order" onclick="submitOrder()">
+          Complete Your Order! 🎉
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER (Matching Wireframe Page 1 exactly)
+       Top brown bar with “Little Things, Lasting Memories”
+       Bottom area with centered Logo & links
+  ══════════════════════════════════════ -->
+  <footer class="site-footer">
+    <!-- Top Dark Brown Accent Banner (Wireframe Page 1: x: -64 to 1110, y: 2071 to 2120) -->
+    <div class="footer-slogan-bar">
+      <p class="slogan-bar-text">“Little Things, Lasting Memories”</p>
+    </div>
+
+    <!-- Main Footer Container -->
+    <div class="footer-main-area">
+      <div class="footer-center-branding">
+        <!-- Logo file directly reused -->
+        <a href="/">
+          <img src="/static/image/logo.png" alt="PlushieLab" class="footer-logo-img" />
+        </a>
+        <p class="footer-motto">“Little Things, Lasting Memories”</p>
+        <p class="footer-description">
+          Online store specializing in customizable plush toys & personalized gifts.
+        </p>
+      </div>
+
+      <div class="footer-nav-grid">
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new-collection">New collection</a></li>
+            <li><a href="/design">Design your own plushie!</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/tracking">Tracking your order</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Feature services</h4>
+          <ul>
+            <li><a href="/design">Personalized Embroidery</a></li>
+            <li><a href="/design">Gift Wrapping & Greeting Cards</a></li>
+            <li><a href="/new-collection">Halloween Limited Edition</a></li>
+            <li><a href="/about">Bulk Custom Plushie Orders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>📍 Ha Noi, Vietnam </li>
+            <li>💌 plushielab.contact@gmail.com</li>
+            <li>📞 Hotline: 1900 8866 (9:00 - 21:00)</li>
+            <li>📸 Instagram: @plushielab.official</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        <p>© 2026 PlushieLab. All rights reserved. Made with love in Vietnam 🧸</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Products API - Load product data -->
+  <script src="/static/js/products-api.js"></script>
+  
+  <!-- Site Script -->
+  <script src="/static/js/main.js"></script>
+  
+  <!-- Slideshow Script -->
+  <script src="/static/js/slideshow.js"></script>
+  
+  {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

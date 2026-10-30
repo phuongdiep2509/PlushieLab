@@ -1,0 +1,98 @@
+<!-- ════════════════════════════════════════════════════════
+     IMAGE SLIDESHOW COMPONENT
+     
+     USAGE in any template:
+     {% include "components/slideshow.html" %}
+     
+     Or with custom options:
+     {% include "components/slideshow.html" with 
+        slideshow_id="my-slideshow",
+        images=image_list,
+        autoplay=true,
+        interval=2000
+     %}
+     ════════════════════════════════════════════════════════ -->
+
+<div 
+  class="slideshow-container" 
+  id="{{ slideshow_id | default:'slideshow-main' }}"
+  data-slideshow
+>
+  <!-- Slides Wrapper -->
+  <div class="slideshow-wrapper">
+    <div class="slideshow-slides">
+      
+      {% if images %}
+        <!-- Render images from context variable -->
+        {% for image in images %}
+          <div class="slide {% if forloop.first %}active{% endif %}">
+            <img 
+              src="{{ image.src | default:image }}" 
+              alt="{{ image.alt | default:'Slide ' ~ forloop.counter }}"
+              loading="lazy"
+            />
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Fallback slot for hardcoded slides -->
+        {% block slideshow_slides %}
+        {% endblock %}
+      {% endif %}
+      
+    </div>
+  </div>
+
+  <!-- Autoplay Indicator (Top Right) -->
+  <div class="autoplay-indicator playing">
+    <span>Auto</span>
+  </div>
+
+  <!-- Navigation Controls (Bottom Center) -->
+  <div class="slideshow-controls">
+    <!-- Previous Button -->
+    <button 
+      type="button" 
+      class="slide-nav-btn prev" 
+      aria-label="Previous slide"
+      title="Slide trước (hoặc dùng ←)"
+    ></button>
+
+    <!-- Slide Indicators (Dots) -->
+    <ul class="slide-indicators" role="tablist">
+      {% if images %}
+        {% for image in images %}
+          <li 
+            class="dot {% if forloop.first %}active{% endif %}" 
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-label="Go to slide {{ forloop.counter }}"
+          ></li>
+        {% endfor %}
+      {% else %}
+        {% block slideshow_indicators %}
+        {% endblock %}
+      {% endif %}
+    </ul>
+
+    <!-- Next Button -->
+    <button 
+      type="button" 
+      class="slide-nav-btn next" 
+      aria-label="Next slide"
+      title="Slide tiếp (hoặc dùng →)"
+    ></button>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter" aria-live="polite"></div>
+  </div>
+
+</div>
+
+<!-- Load Slideshow Script (if not already loaded) -->
+<script>
+  if (typeof ImageSlideshow === 'undefined') {
+    var slideshowScript = document.createElement('script');
+    slideshowScript.src = '/static/js/slideshow.js';
+    document.head.appendChild(slideshowScript);
+  }
+</script>

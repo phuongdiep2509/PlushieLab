@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Slideshow Demo — PlushieLab{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 60px auto; padding: 20px;">
+  
+  <h1 style="text-align: center; margin-bottom: 12px; font-family: 'Playfair Display';">
+    📸 Image Slideshow Demo
+  </h1>
+  
+  <p style="text-align: center; color: #666; margin-bottom: 40px;">
+    Auto-advance every 2 seconds • Click buttons or press arrow keys to control
+  </p>
+
+  <!-- Example 1: Basic Slideshow with Dynamic Images -->
+  <section style="margin-bottom: 60px;">
+    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Example 1: Dynamic Images</h2>
+    
+    {% include "components/slideshow.html" with 
+       slideshow_id="slideshow-dynamic",
+       images=pdf_images
+    %}
+    
+    <p style="margin-top: 16px; color: #666; font-size: 14px;">
+      This slideshow dynamically loads images from your <code>pdf_images/</code> folder via Python backend.
+    </p>
+  </section>
+
+  <!-- Example 2: Manual Slides -->
+  <section style="margin-bottom: 60px;">
+    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Example 2: Hardcoded Slides</h2>
+    
+    <div 
+      class="slideshow-container" 
+      id="slideshow-manual"
+      data-slideshow
+    >
+      <div class="slideshow-wrapper">
+        <div class="slideshow-slides">
+          <div class="slide active">
+            <img src="/static/image/logo.png" alt="PlushieLab Logo" />
+          </div>
+          <div class="slide">
+            <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 48px; color: white;">
+              🧸 Slide 2
+            </div>
+          </div>
+          <div class="slide">
+            <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); font-size: 48px; color: white;">
+              ❤️ Slide 3
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="autoplay-indicator playing">
+        <span>Auto</span>
+      </div>
+
+      <div class="slideshow-controls">
+        <button type="button" class="slide-nav-btn prev" aria-label="Previous slide"></button>
+        <ul class="slide-indicators" role="tablist">
+          <li class="dot active" role="tab" aria-selected="true"></li>
+          <li class="dot" role="tab" aria-selected="false"></li>
+          <li class="dot" role="tab" aria-selected="false"></li>
+        </ul>
+        <button type="button" class="slide-nav-btn next" aria-label="Next slide"></button>
+        <div class="slide-counter" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; color: #666; font-size: 14px;">
+      This is a hardcoded example showing how to build slides directly in HTML.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section style="background: #f9f9f9; padding: 30px; border-radius: 8px;">
+    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">✨ Features</h2>
+    <ul style="line-height: 1.8;">
+      <li><strong>Auto-Advance:</strong> Slides automatically change every 2 seconds</li>
+      <li><strong>User Control:</strong> Click arrow buttons or use keyboard ← → to navigate</li>
+      <li><strong>Dot Indicators:</strong> Click any dot to jump to that slide</li>
+      <li><strong>Auto-play Toggle:</strong> Click the "Auto" badge to pause/resume auto-play</li>
+      <li><strong>Hover Pause:</strong> Auto-play pauses when hovering, resumes on mouse leave</li>
+      <li><strong>Responsive Design:</strong> Fully responsive on mobile, tablet, and desktop</li>
+      <li><strong>Accessibility:</strong> Full keyboard navigation and ARIA labels</li>
+      <li><strong>Smooth Transitions:</strong> 0.5s fade effect between slides</li>
+    </ul>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Example of programmatic control (optional)
+  document.addEventListener('DOMContentLoaded', () => {
+    // You can access slideshows via window or by storing references
+    window.slideshow1 = new ImageSlideshow('slideshow-dynamic');
+    window.slideshow2 = new ImageSlideshow('slideshow-manual');
+
+    // Example: Log when slides change
+    console.log('Slideshows initialized!');
+  });
+</script>
+{% endblock %}

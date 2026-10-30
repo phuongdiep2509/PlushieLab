@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products API Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .log { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; font-family: monospace; white-space: pre-wrap; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Products API Test</h1>
+  <div id="output"></div>
+
+  <script src="/static/js/products-api.js"></script>
+  <script>
+    const output = document.getElementById('output');
+    
+    function log(msg, isError = false) {
+      const div = document.createElement('div');
+      div.className = 'log ' + (isError ? 'error' : 'success');
+      div.textContent = msg;
+      output.appendChild(div);
+      console.log(msg);
+    }
+
+    async function test() {
+      try {
+        log('Testing ProductsAPI...');
+        
+        // Test 1: Check if productsAPI is available
+        if (!window.productsAPI) {
+          log('ERROR: productsAPI not found', true);
+          return;
+        }
+        log('✅ productsAPI is available');
+        
+        // Test 2: Load products
+        log('Loading products...');
+        const products = await window.productsAPI.getAllProducts();
+        log(`✅ Got ${products.length} products`);
+        
+        // Test 3: Check product structure
+        if (products.length > 0) {
+          const p = products[0];
+          log(`First product: ${p.id} - ${p.type} ${p.color}`);
+          log(`  image: ${p.image}`);
+        }
+        
+        // Test 4: Create map like design.html does
+        const map = {};
+        products.forEach(product => {
+          const key = `${product.type}_${product.color}`;
+          map[key] = product.image;
+        });
+        log(`✅ Created map with ${Object.keys(map).length} entries`);
+        
+        // Test 5: Check specific combinations
+        const testCombos = ['bear_cream', 'bunny_pink', 'cat_caramel', 'capybara_brown'];
+        testCombos.forEach(combo => {
+          if (map[combo]) {
+            log(`✅ ${combo} → ${map[combo]}`);
+          } else {
+            log(`❌ ${combo} NOT FOUND`, true);
+          }
+        });
+        
+        log('\n✅ ALL TESTS PASSED!');
+        
+      } catch (error) {
+        log('ERROR: ' + error.message, true);
+        console.error(error);
+      }
+    }
+
+    // Run tests when page loads
+    window.addEventListener('load', test);
+  </script>
+</body>
+</html>

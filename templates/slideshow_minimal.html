@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Minimal Slideshow Example — PlushieLab{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 60px auto; padding: 20px;">
+  
+  <h1 style="text-align: center; margin-bottom: 8px; font-family: 'Playfair Display';">
+    Minimal Slideshow Example
+  </h1>
+  
+  <p style="text-align: center; color: #999; margin-bottom: 40px; font-size: 14px;">
+    Copy-paste ready! Just change the image paths.
+  </p>
+
+  <!-- ══════════════════════════════════════
+       COPY THIS SECTION TO USE SLIDESHOW
+       ══════════════════════════════════════ -->
+  
+  <div 
+    class="slideshow-container" 
+    id="my-slideshow"
+    data-slideshow
+  >
+    <!-- Slides Wrapper -->
+    <div class="slideshow-wrapper">
+      <div class="slideshow-slides">
+        
+        <!-- SLIDE 1 -->
+        <div class="slide active">
+          <img src="https://via.placeholder.com/800x600/667eea/ffffff?text=Slide+1" alt="Slide 1" />
+        </div>
+        
+        <!-- SLIDE 2 -->
+        <div class="slide">
+          <img src="https://via.placeholder.com/800x600/764ba2/ffffff?text=Slide+2" alt="Slide 2" />
+        </div>
+        
+        <!-- SLIDE 3 -->
+        <div class="slide">
+          <img src="https://via.placeholder.com/800x600/f093fb/ffffff?text=Slide+3" alt="Slide 3" />
+        </div>
+        
+        <!-- ADD MORE SLIDES HERE by copying a slide block above -->
+        
+      </div>
+    </div>
+
+    <!-- Auto-play Indicator (Optional) -->
+    <div class="autoplay-indicator playing">
+      <span>Auto</span>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slideshow-controls">
+      <!-- Previous Button -->
+      <button 
+        type="button" 
+        class="slide-nav-btn prev" 
+        aria-label="Previous slide"
+        title="Previous (or use ← arrow key)"
+      ></button>
+
+      <!-- Dot Indicators - Update count to match number of slides -->
+      <ul class="slide-indicators" role="tablist">
+        <li class="dot active" role="tab" aria-selected="true"></li>
+        <li class="dot" role="tab" aria-selected="false"></li>
+        <li class="dot" role="tab" aria-selected="false"></li>
+      </ul>
+
+      <!-- Next Button -->
+      <button 
+        type="button" 
+        class="slide-nav-btn next" 
+        aria-label="Next slide"
+        title="Next (or use → arrow key)"
+      ></button>
+
+      <!-- Slide Counter (Auto-updated) -->
+      <div class="slide-counter" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       END SLIDESHOW SECTION
+       ══════════════════════════════════════ -->
+
+  <!-- Information Section -->
+  <div style="margin-top: 60px; padding: 30px; background: #f5f5f5; border-radius: 8px;">
+    
+    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">📝 How to Customize</h2>
+    
+    <section style="margin-bottom: 30px;">
+      <h3 style="font-size: 16px; margin-bottom: 10px;">1️⃣ Change Image URLs</h3>
+      <p style="color: #666; line-height: 1.6;">
+        Replace the <code>src</code> URLs in each <code>&lt;img&gt;</code> tag with your own image paths.
+      </p>
+      <pre style="background: #fff; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+&lt;img src="<strong>your-image-url-here.jpg</strong>" alt="Slide 1" /&gt;</pre>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+      <h3 style="font-size: 16px; margin-bottom: 10px;">2️⃣ Add More Slides</h3>
+      <p style="color: #666; line-height: 1.6;">
+        Copy a <code>&lt;div class="slide"&gt;</code> block and paste it. Add a corresponding <code>&lt;li class="dot"&gt;</code> in the indicators section.
+      </p>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+      <h3 style="font-size: 16px; margin-bottom: 10px;">3️⃣ Adjust Timing</h3>
+      <p style="color: #666; line-height: 1.6;">
+        In JavaScript, change the interval:
+      </p>
+      <pre style="background: #fff; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+new ImageSlideshow('my-slideshow', { 
+  autoplayInterval: <strong>3000</strong>  // 3 seconds instead of 2
+});</pre>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+      <h3 style="font-size: 16px; margin-bottom: 10px;">4️⃣ Hide Auto-play Badge</h3>
+      <p style="color: #666; line-height: 1.6;">
+        Remove or comment out this line:
+      </p>
+      <pre style="background: #fff; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+&lt;!-- &lt;div class="autoplay-indicator playing"&gt;&lt;span&gt;Auto&lt;/span&gt;&lt;/div&gt; --&gt;</pre>
+    </section>
+
+    <section>
+      <h3 style="font-size: 16px; margin-bottom: 10px;">5️⃣ Change Container Size</h3>
+      <p style="color: #666; line-height: 1.6;">
+        Edit the outer <code>&lt;div&gt;</code> styling or CSS in <code>static/css/slideshow.css</code>:
+      </p>
+      <pre style="background: #fff; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+.slideshow-container {
+  max-width: <strong>600px</strong>;  /* Change this */
+  margin: 0 auto;
+}</pre>
+    </section>
+
+  </div>
+
+  <!-- Controls Explanation -->
+  <div style="margin-top: 30px; padding: 20px; background: #fffbf0; border-radius: 8px; border-left: 4px solid #f5a623;">
+    
+    <h3 style="font-size: 16px; margin-bottom: 12px;">🎮 How Users Control It</h3>
+    
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr style="background: #fff;">
+        <td style="padding: 10px; border: 1px solid #eee;"><strong>Action</strong></td>
+        <td style="padding: 10px; border: 1px solid #eee;"><strong>How</strong></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #eee;">Next slide</td>
+        <td style="padding: 10px; border: 1px solid #eee;">Click › button or press → arrow key</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #eee;">Previous slide</td>
+        <td style="padding: 10px; border: 1px solid #eee;">Click ‹ button or press ← arrow key</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #eee;">Jump to slide</td>
+        <td style="padding: 10px; border: 1px solid #eee;">Click any dot indicator</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #eee;">Pause auto-play</td>
+        <td style="padding: 10px; border: 1px solid #eee;">Click "Auto" badge or hover mouse</td>
+      </tr>
+    </table>
+    
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+
+==================== PAGE 1 (1024.5 x 2304.0) ====================
+Images count: 15, Drawings count: 113
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [ 893.4,  608.8,  945.0,  628.3]: View all
+  [ 639.7, 1050.8,  934.9, 1080.8]: Halloween  |  Halloween
+  [ 640.9,  835.6,  935.5,  865.7]: Halloween  |  Halloween
+  [  57.6,  600.4,  221.0,  636.1]: New Collection
+  [  57.6, 1176.4,  945.0, 1212.1]: View all   |  Feature Product
+  [  91.6, 1287.7,  359.5, 1365.5]: Product 01  |  Our Memories bla blo
+  [  91.6, 1381.0,  226.8, 1446.5]: Plushie plushie...  |  Happy happy happy...  |  Congrats congrats....  |  (Description)
+  [ 122.2, 1599.4,  190.7, 1625.1]: Buy now
+  [  57.6, 1752.4,  211.2, 1788.1]: Our Feedback
+  [ 105.2, 1980.5,  921.6, 2010.5]: Halloween  |  Halloween  |  Halloween  |  Halloween  |  Halloween
+  [ 376.9, 2085.8,  647.6, 2110.1]: “Little Things, Lasting Memories”
+  [ 342.4, 2144.1,  682.1, 2245.4]: PlushieLab  |  “Little Things, Lasting Memories”
+
+==================== PAGE 2 (1024.5 x 1152.0) ====================
+Images count: 6, Drawings count: 55
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  112.4,  213.1,  135.2]: Home / New collection
+  [  57.6,  163.3,  525.1,  199.0]: Special Season - Our Thing, Our Memories
+  [ 750.1,  210.2,  966.9,  282.0]: Product 01  |  Our Memories bla blo
+  [ 831.8,  296.8,  966.9,  332.2]: Plushie plushie...  |  Happy happy happy...
+  [ 839.9,  326.8,  966.9,  347.2]: Congrats congrats....
+  [ 883.4,  341.8,  966.9,  362.2]: (Description)
+  [ 839.6,  491.3,  908.1,  517.0]: Buy now
+  [ 142.3,  623.5,  893.8,  653.5]: Collection 01 - Meow meow  |  Collection 02 - Meow meow
+  [ 141.2,  875.2,  893.6,  905.2]: Collection 03 - Meow meow  |  Collection 04 - Meow meow
+
+==================== PAGE 3 (1024.5 x 576.0) ====================
+Images count: 10, Drawings count: 55
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [ 459.2,  503.8,  826.1,  518.0]: Cream  |  Caramel  |  Pink  |  Brown
+  [ 598.3,  286.1,  687.0,  307.5]: Type Options:
+  [ 459.4,  377.2,  832.9,  391.9]: Bunny  |  Cat  |  Bear  |  Capybara
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [  57.6,  211.9,  251.9,  237.5]: 1. Choose your plush type
+  [  57.6,  246.5,  462.8,  267.8]: Lựa chọn loại gấu bông bạn mong muốn và màu sắc yêu thích
+  [ 596.0,  402.2,  689.3,  423.5]: Color Options:
+
+==================== PAGE 4 (1024.5 x 576.0) ====================
+Images count: 11, Drawings count: 87
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  260.1,  237.5]: 2. Choose your accessories
+  [  57.6,  246.5,  381.9,  267.8]: Lựa chọn phụ kiện phù hợp cho gấu bông của bạn
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 666.7,  289.0,  703.0,  309.2]: Bows:
+  [ 668.3,  399.7,  701.4,  419.9]: Hats:
+  [ 384.3,  296.8,  425.8,  321.4]: Head
+  [ 387.3,  356.3,  422.8,  380.9]: Tops
+  [ 377.4,  416.4,  432.7,  438.4]: Bottoms
+  [ 377.8,  478.9,  433.3,  495.1]: Accessories
+
+==================== PAGE 5 (1024.5 x 576.0) ====================
+Images count: 11, Drawings count: 87
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  260.1,  237.5]: 2. Choose your accessories
+  [  57.6,  246.5,  381.9,  267.8]: Lựa chọn phụ kiện phù hợp cho gấu bông của bạn
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 384.3,  289.0,  700.9,  321.4]: Tops:  |  Head
+  [ 387.3,  356.3,  422.8,  380.9]: Tops
+  [ 377.4,  416.4,  432.7,  438.4]: Bottoms
+  [ 377.8,  478.9,  433.3,  495.1]: Accessories
+
+==================== PAGE 6 (1024.5 x 576.0) ====================
+Images count: 11, Drawings count: 87
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  260.1,  237.5]: 2. Choose your accessories
+  [  57.6,  246.5,  381.9,  267.8]: Lựa chọn phụ kiện phù hợp cho gấu bông của bạn
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 384.3,  289.0,  711.8,  321.4]: Bottoms:  |  Head
+  [ 387.3,  356.3,  422.8,  380.9]: Tops
+  [ 377.4,  416.4,  432.7,  438.4]: Bottoms
+  [ 377.8,  478.9,  433.3,  495.1]: Accessories
+
+==================== PAGE 7 (1024.5 x 576.0) ====================
+Images count: 11, Drawings count: 87
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  260.1,  237.5]: 2. Choose your accessories
+  [  57.6,  246.5,  381.9,  267.8]: Lựa chọn phụ kiện phù hợp cho gấu bông của bạn
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 384.3,  289.0,  701.8,  321.4]: Bags:  |  Head
+  [ 387.3,  356.3,  422.8,  380.9]: Tops
+  [ 377.4,  416.4,  432.7,  438.4]: Bottoms
+  [ 377.8,  478.9,  433.3,  495.1]: Accessories
+
+==================== PAGE 8 (1024.5 x 576.0) ====================
+Images count: 7, Drawings count: 57
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  137.2,  237.5]: 3. Services
+  [  57.6,  246.5,  260.9,  267.8]: Lựa chọn thêu tên hoặc gói quà
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 530.8,  293.1,  714.6,  313.2]: Dịch vụ thêu tên cá nhân hóa:
+  [ 366.8,  337.5,  880.0,  354.6]: Nhập tên bạn mong muốn...  |  Thêm tên  |  Thêm icon
+  [ 572.8,  379.3,  672.7,  399.5]: Dịch vụ gói quà:
+  [ 439.3,  494.8,  806.1,  509.1]: Cream  |  Caramel  |  Pink  |  Brown
+
+==================== PAGE 9 (1024.5 x 576.0) ====================
+Images count: 3, Drawings count: 106
+  [  67.5,   34.5,  229.0,   82.7]: PlushieLab  |  “Little Things, Lasting Memories”
+  [ 393.2,   51.0,  884.0,   70.8]: Home  |  New collection  |  Design  |  About us  |  Tracking
+  [  57.6,  211.9,  138.5,  237.5]: 4. Preview
+  [ 298.7,  167.8,  726.7,  187.4]: 1  |  2  |  3  |  4
+  [ 261.3,  189.6,  740.9,  203.9]: Choose your plush  |  Accessories  |  Services  |  Preview
+  [  57.6,  112.4,  160.1,  135.2]: Home / Design
+  [ 593.0,  263.1,  666.6,  283.2]: Your Order:
+  [ 378.3,  353.0,  592.2,  371.0]: Head  |  Tops
+  [ 371.9,  412.7,  602.5,  427.4]: Bottoms  |  Accessories
+  [ 379.3,  294.6,  594.1,  326.4]: Type  |  Color  |  Typeabababbabbababa
+  [ 377.7,  368.5,  497.0,  384.9]: Typeabababbabbababa
+  [ 377.7,  427.2,  497.0,  443.6]: Typeabababbabbababa
+  [ 563.8,  311.3,  683.1,  327.6]: Typeabababbabbababa
+  [ 565.4,  369.7,  684.8,  386.1]: Typeabababbabbababa
+  [ 565.0,  424.8,  684.4,  441.2]: Typeabababbabbababa
+  [ 741.0,  355.6,  758.6,  372.0]: Gói
+  [ 733.2,  297.2,  852.6,  328.6]: Thêu  |  Typeabababbabbababa
+  [ 734.9,  370.7,  854.2,  387.0]: Typeabababbabbababa
+  [ 344.9,  482.1,  831.8,  523.0]: Total price: 299.000đ  |  Buy now

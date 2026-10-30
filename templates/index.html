@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}PlushieLab — Little Things, Lasting Memories{% endblock %}
+
+{% block content %}
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO SECTION (Wireframe Page 1)
+       Background: background.png
+  ══════════════════════════════════════ -->
+  <section class="hero-section" aria-label="Hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">✨ Little Things, Lasting Memories</span>
+      <h1 class="hero-title">Plushie Lab</h1>
+      <p class="hero-subtitle">Online store specializing in customizable plush toys & personalized gifts</p>
+      <div class="hero-cta-group">
+        <a href="/design" class="btn-primary" style="padding:14px 36px;font-size:1.05rem;">Design Your Plushie ✂️</a>
+        <a href="/new-collection" class="btn-ghost">View All Collections →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — NEW COLLECTION (Wireframe Page 1)
+       Layout: Left = Featured Collection Card w/ slider dots
+               Right = 2x2 Product Card Grid (Halloween)
+  ══════════════════════════════════════ -->
+  <section class="section" id="new-collection-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">🎃 Halloween Special Edition</h2>
+      <a href="/new-collection" class="view-all-link">View all →</a>
+    </div>
+
+    <div class="collection-split-layout">
+      <!-- Left Featured Banner Card with Carousel Indicators -->
+      <div class="collection-main-banner">
+        <div class="main-banner-img-wrap">
+          <!-- PLACEHOLDER: Main collection banner image -->
+          <img src="/static/image/Halloween Collection.png" alt="Special Seasonal Collection" class="main-banner-img" />
+          <div class="main-banner-overlay">
+            <span class="badge-tag">Halloween Special Edition</span>
+            <h3>Halloween is coming!</h3>
+            <p>Discover our limited-edition Halloween collection, featuring the cutest plushie friends!</p>
+            <a href="/design" class="btn-primary" style="margin-top:10px;padding:10px 24px;font-size:0.9rem;">Explore our collection!</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 2x2 Grid: 4 Cards with "Halloween" labels (Matching Wireframe Page 1) -->
+      <div class="collection-right-grid" id="halloween-products">
+        <!-- Sẽ được load bởi JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SCRIPT: Load Halloween Products từ JSON
+  ══════════════════════════════════════ -->
+  <script>
+    async function loadHalloweenProducts() {
+      // Lấy tất cả sản phẩm Halloween từ API
+      const products = await productsAPI.getHalloweenProducts();
+      
+      // Tạo HTML cho mỗi sản phẩm
+      const html = products.map(product => `
+        <article class="product-wireframe-card" onclick="quickAddToCart('${product.name}', ${product.basePrice}, '${product.typeName}', '${product.colorName}', '${product.image}', '${product.id}')">
+          <div class="pw-img-wrap">
+            <img src="${product.image}" alt="${product.name}" />
+          </div>
+          <div class="pw-footer-label">
+            <span class="pw-title">${product.collection}</span>
+            <span class="pw-subtitle">${product.name} • ${product.basePrice.toLocaleString('vi-VN')}đ</span>
+          </div>
+        </article>
+      `).join('');
+      
+      // Gán vào HTML
+      document.getElementById('halloween-products').innerHTML = html;
+    }
+    
+    // Load khi trang ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadHalloweenProducts);
+    } else {
+      loadHalloweenProducts();
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — FEATURE PRODUCT (Wireframe Page 1)
+       Layout: Left = Product Image
+               Right = Product details + buttons (on same row)
+  ══════════════════════════════════════ -->
+  <section class="section feature-product-section" id="feature-product-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">⭐ Featured Pick</h2>
+      <a href="/new-collection" class="view-all-link">View all →</a>
+    </div>
+
+    <div class="feature-product-carousel-box" id="featured-product">
+      <!-- Sẽ được load bởi JavaScript -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SCRIPT: Load Featured Product Carousel từ JSON
+  ══════════════════════════════════════ -->
+  <script>
+    let featuredCurrentSlide = 0;
+    let featuredCarouselInterval;
+    
+    function getRandomProducts(count = 3) {
+      return (async () => {
+        const allProducts = await productsAPI.getAllProducts();
+        const shuffled = [...allProducts].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, count);
+      })();
+    }
+    
+    async function loadFeaturedProduct() {
+      const products = await getRandomProducts(3);
+      if (products.length === 0) return;
+      
+      const container = document.getElementById('featured-product');
+      
+      // Create carousel slides
+      const slidesHtml = products.map((product, idx) => `
+        <div class="featured-carousel-slide ${idx === 0 ? 'active' : ''}" data-slide="${idx}">
+          <!-- Left: Image -->
+          <div class="featured-img-section">
+            <div class="featured-img-wrapper">
+              <img src="${product.image}" alt="${product.name}" class="featured-img" />
+            </div>
+          </div>
+          
+          <!-- Right: Info -->
+          <div class="featured-info-section">
+            <span class="featured-badge">${product.collection.toUpperCase()}</span>
+            <h2 class="featured-title">${product.name}</h2>
+            <p class="featured-meta">${product.typeName} • ${product.colorName}</p>
+            <p class="featured-desc">${product.description}</p>
+            <p class="featured-rating">Rating: ⭐ ${product.ratings} (${product.reviews} reviews)</p>
+            
+            <div class="featured-price-actions">
+              <span class="featured-price">${product.basePrice.toLocaleString('vi-VN')}đ</span>
+              <button class="btn-primary" onclick="quickAddToCart('${product.name}', ${product.basePrice}, '${product.typeName}', '${product.colorName}', '${product.image}', '${product.id}')">
+                Buy now 🛒
+              </button>
+              <a href="/design" class="btn-secondary">Customize ✏️</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Create carousel container
+      const carouselHtml = `
+        <div class="featured-carousel-container">
+          ${slidesHtml}
+        </div>
+        <div class="carousel-dots-row featured-carousel-dots" aria-label="Featured product carousel">
+          ${products.map((_, idx) => `
+            <button class="dot-btn ${idx === 0 ? 'active' : ''}" aria-label="Product ${idx + 1}" onclick="goToFeaturedSlide(${idx})"></button>
+          `).join('')}
+        </div>
+      `;
+      
+      container.innerHTML = carouselHtml;
+      
+      setTimeout(() => {
+        showFeaturedSlide(0, products.length);
+        startFeaturedCarouselAutoplay(products.length);
+      }, 100);
+    }
+    
+    function showFeaturedSlide(n, total) {
+      const slides = document.querySelectorAll('.featured-carousel-slide');
+      const dots = document.querySelectorAll('.featured-carousel-dots .dot-btn');
+      
+      featuredCurrentSlide = ((n % total) + total) % total;
+      
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+      
+      if (slides[featuredCurrentSlide]) {
+        slides[featuredCurrentSlide].classList.add('active');
+      }
+      
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === featuredCurrentSlide);
+      });
+    }
+    
+    function goToFeaturedSlide(slideIdx) {
+      clearInterval(featuredCarouselInterval);
+      const total = document.querySelectorAll('.featured-carousel-slide').length;
+      showFeaturedSlide(slideIdx, total);
+      startFeaturedCarouselAutoplay(total);
+    }
+    
+    function startFeaturedCarouselAutoplay(total) {
+      featuredCarouselInterval = setInterval(() => {
+        showFeaturedSlide(featuredCurrentSlide + 1, total);
+      }, 4000);
+    }
+    
+    // Load khi trang ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadFeaturedProduct);
+    } else {
+
+      loadFeaturedProduct();
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — OUR FEEDBACK (Wireframe Page 1)
+       5 horizontally placed feedback review cards
+  ══════════════════════════════════════ -->
+  <section class="section feedback-section" id="feedback-section">
+    <div class="section-heading-row">
+      <h2 class="section-heading">Our Feedback</h2>
+      <span style="font-size:0.9rem;color:var(--color-brown);opacity:0.8;">Trusted by 1,000+ Happy Customers ⭐⭐⭐⭐⭐</span>
+    </div>
+
+    <!-- 5 feedback cards in row matching wireframe Page 1 -->
+    <div class="feedback-grid-row" role="list">
+      <!-- Feedback Card 1 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/Feedback 1.png" alt="Customer review photo 1" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Gấu bông cực kỳ mềm mại, đường thêu tên rất sắc nét!"</p>
+          <span class="fb-author">★ Mai Anh</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 2 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/Feedback 2.png" alt="Customer review photo 2" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Hộp quà gói siêu xinh xắn, bạn mình nhận được rất thích."</p>
+          <span class="fb-author">★ Đức Hoàng</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 3 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/Feedback 3.png" alt="Customer review photo 3" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Phụ kiện nơ và áo len vừa vặn y như hình mô tả!"</p>
+          <span class="fb-author">★ Linh Chi</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 4 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/Feedback 4.png" alt="Customer review photo 4" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Chất liệu cao cấp, ôm vừa tay, mùi thơm dịu dễ chịu."</p>
+          <span class="fb-author">★ Thảo My</span>
+        </div>
+      </article>
+
+      <!-- Feedback Card 5 -->
+      <article class="feedback-card" role="listitem">
+        <div class="fb-img-wrap">
+          <img src="/static/image/Feedback 5.png" alt="Customer review photo 5" />
+        </div>
+        <div class="fb-footer">
+          <span class="fb-title">Halloween</span>
+          <p class="fb-text">"Giao hàng nhanh, đóng gói cẩn thận 10/10."</p>
+          <span class="fb-author">★ Gia Huy</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+{% endblock %}

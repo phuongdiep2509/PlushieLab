@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Products API Test — PlushieLab{% endblock %}
+
+{% block content %}
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+  
+  <h1 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 10px;">
+    📦 Products API Test Console
+  </h1>
+  
+  <p style="text-align: center; color: #999; margin-bottom: 40px;">
+    Kiểm tra dữ liệu sản phẩm từ products.json • Mở DevTools (F12) để xem console
+  </p>
+
+  <!-- Buttons for Testing -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px;">
+    
+    <button onclick="testGetAllProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      ✓ Lấy Tất Cả Sản Phẩm
+    </button>
+
+    <button onclick="testGetHalloweenProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎃 Lấy Sản Phẩm Halloween
+    </button>
+
+    <button onclick="testGetCollectionProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐱 Lấy Collection Products
+    </button>
+
+    <button onclick="testGetFeaturedProducts()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      ⭐ Lấy Featured Products
+    </button>
+
+    <button onclick="testGetProductsByType('bear')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐻 Lấy Sản Phẩm Bear
+    </button>
+
+    <button onclick="testGetProductsByType('cat')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🐱 Lấy Sản Phẩm Cat
+    </button>
+
+    <button onclick="testSearchProducts('Meow')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🔍 Tìm Kiếm 'Meow'
+    </button>
+
+    <button onclick="testGetTypes()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      📋 Lấy Types
+    </button>
+
+    <button onclick="testGetColors()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎨 Lấy Colors
+    </button>
+
+    <button onclick="testGetAccessories('head')" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      👑 Lấy Accessories (Head)
+    </button>
+
+    <button onclick="testGetServices()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      🎁 Lấy Services
+    </button>
+
+    <button onclick="testSortByPrice()" class="btn-primary" style="padding: 12px; cursor: pointer;">
+      💰 Sắp Xếp Theo Giá
+    </button>
+
+  </div>
+
+  <!-- Display Results -->
+  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; max-height: 600px; overflow-y: auto;">
+    <h3 style="margin-top: 0;">📊 Kết Quả:</h3>
+    <pre id="results" style="background: white; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 12px;">
+Nhấn một nút ở trên để xem kết quả (JSON format)
+    </pre>
+  </div>
+
+  <!-- Info Section -->
+  <div style="margin-top: 40px; padding: 20px; background: #e8f4f8; border-radius: 8px; border-left: 4px solid #4facfe;">
+    <h3 style="margin-top: 0;">ℹ️ Thông Tin</h3>
+    <ul style="line-height: 1.8;">
+      <li>Mở <code>DevTools</code> (F12) để xem chi tiết trong console</li>
+      <li>Mở <code>Network tab</code> để xem request GET /static/data/products.json</li>
+      <li>Tất cả method là <code>async</code> - sử dụng <code>await</code> hoặc <code>.then()</code></li>
+      <li>Global instance: <code>productsAPI</code> - có sẵn trong browser</li>
+      <li>File data: <code>static/data/products.json</code></li>
+      <li>File API: <code>static/js/products-api.js</code></li>
+    </ul>
+  </div>
+
+  <!-- Code Examples -->
+  <div style="margin-top: 30px; background: #fff9e6; padding: 20px; border-radius: 8px; border-left: 4px solid #f5a623;">
+    <h3 style="margin-top: 0;">💻 Ví Dụ Code</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6;">
+// Ở trong console hoặc file JS:
+
+// 1. Lấy tất cả sản phẩm
+const products = await productsAPI.getAllProducts();
+
+// 2. Lấy sản phẩm theo ID
+const product = await productsAPI.getProductById('PROD-001');
+
+// 3. Lấy Halloween products
+const halloween = await productsAPI.getHalloweenProducts();
+
+// 4. Tìm kiếm
+const results = await productsAPI.searchProducts('Bunnie');
+
+// 5. Lấy phụ kiện
+const heads = await productsAPI.getAccessoriesByType('head');
+
+// 6. Sắp xếp theo giá
+const sorted = await productsAPI.getProductsSortedByPrice('asc');
+    </pre>
+  </div>
+
+</div>
+
+<script>
+// Các function test
+
+async function testGetAllProducts() {
+  const results = await productsAPI.getAllProducts();
+  displayResults('Tất Cả Sản Phẩm', results);
+  console.log('All products:', results);
+}
+
+async function testGetHalloweenProducts() {
+  const results = await productsAPI.getHalloweenProducts();
+  displayResults('Sản Phẩm Halloween', results);
+  console.log('Halloween products:', results);
+}
+
+async function testGetCollectionProducts() {
+  const results = await productsAPI.getCollectionProducts();
+  displayResults('Collection Products', results);
+  console.log('Collection products:', results);
+}
+
+async function testGetFeaturedProducts() {
+  const results = await productsAPI.getFeaturedProducts();
+  displayResults('Featured Products', results);
+  console.log('Featured products:', results);
+}
+
+async function testGetProductsByType(type) {
+  const results = await productsAPI.getProductsByType(type);
+  displayResults(`Sản Phẩm Loại ${type}`, results);
+  console.log(`Products by type (${type}):`, results);
+}
+
+async function testSearchProducts(keyword) {
+  const results = await productsAPI.searchProducts(keyword);
+  displayResults(`Kết Quả Tìm Kiếm "${keyword}"`, results);
+  console.log(`Search results for "${keyword}":`, results);
+}
+
+async function testGetTypes() {
+  const results = await productsAPI.getTypes();
+  displayResults('Loại Gấu Bông', results);
+  console.log('Types:', results);
+}
+
+async function testGetColors() {
+  const results = await productsAPI.getColors();
+  displayResults('Màu Sắc', results);
+  console.log('Colors:', results);
+}
+
+async function testGetAccessories(type) {
+  const results = await productsAPI.getAccessoriesByType(type);
+  displayResults(`Phụ Kiện (${type})`, results);
+  console.log(`Accessories (${type}):`, results);
+}
+
+async function testGetServices() {
+  const results = await productsAPI.getServices();
+  displayResults('Dịch Vụ', results);
+  console.log('Services:', results);
+}
+
+async function testSortByPrice() {
+  const results = await productsAPI.getProductsSortedByPrice('asc');
+  displayResults('Sản Phẩm Sắp Xếp Theo Giá (Thấp → Cao)', results);
+  console.log('Sorted by price:', results);
+}
+
+function displayResults(title, data) {
+  const el = document.getElementById('results');
+  el.textContent = `${title}\n\n${JSON.stringify(data, null, 2)}`;
+}
+</script>
+
+{% endblock %}
