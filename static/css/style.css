@@ -461,7 +461,7 @@ ul {
 .hero-section {
   position: relative;
   min-height: 900px;
-  background-image: url('/static/image/background.png');
+  background-image: url('../image/background.png');
   background-size: cover;
   background-position: center 35%;
   background-repeat: no-repeat;
@@ -2325,7 +2325,7 @@ ul {
 .about-hero {
   position: relative;
   min-height: 380px;
-  background-image: url('/static/image/background.png');
+  background-image: url('../image/background.png');
   background-size: cover;
   background-position: center 30%;
   display: flex;

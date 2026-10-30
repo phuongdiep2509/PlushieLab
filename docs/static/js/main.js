@@ -50,11 +50,11 @@ let cart = [];
 ────────────────────────────────────────── */
 function getPlushieDefaultImage(type) {
   const t = (type || '').toLowerCase();
-  if (t.includes('bear') || t.includes('gấu')) return '/static/image/Original Bear.png';
-  if (t.includes('bun') || t.includes('thỏ')) return '/static/image/Original Bunnie.png';
-  if (t.includes('cat') || t.includes('mèo') || t.includes('kit')) return '/static/image/Original Kitten.png';
-  if (t.includes('capy')) return '/static/image/Original Capy.png';
-  return '/static/image/background.png';
+  if (t.includes('bear') || t.includes('gấu')) return 'static/image/Original Bear.png';
+  if (t.includes('bun') || t.includes('thỏ')) return 'static/image/Original Bunnie.png';
+  if (t.includes('cat') || t.includes('mèo') || t.includes('kit')) return 'static/image/Original Kitten.png';
+  if (t.includes('capy')) return 'static/image/Original Capy.png';
+  return 'static/image/background.png';
 }
 
 function loadCartFromStorage() {
@@ -492,7 +492,7 @@ function updateCartUI() {
       const itemImage = item.image || getPlushieDefaultImage(item.typeName || item.type);
       return `
         <div class="cart-item-row">
-          <img src="${itemImage}" alt="${item.name}" class="cart-item-img" onerror="this.onerror=null;this.src='/static/image/background.png';" />
+          <img src="${itemImage}" alt="${item.name}" class="cart-item-img" onerror="this.onerror=null;this.src='static/image/background.png';" />
           <div class="cart-item-details">
             <div class="cart-item-id-badge">${item.id}</div>
             <h4 class="cart-item-name">${item.name}</h4>
